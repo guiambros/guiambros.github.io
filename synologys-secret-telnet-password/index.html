@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Synology&#39;s &#34;secret&#34; telnet password | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="If you have a Synology NAS and had some sort of disk crash in the past, you&rsquo;ve probably encountered the famous &ldquo;Cannot format system partition&rdquo; and &ldquo;Please configure your router to forward port 23 to DiskStation and contact Synology online support&rdquo;.
@@ -57,7 +57,79 @@ It sucks even more when you know the disk is perfectly fine, and you still have 
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/synologys-secret-telnet-password/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Synology&#39;s &#34;secret&#34; telnet password">
+  <meta property="og:description" content="If you have a Synology NAS and had some sort of disk crash in the past, you’ve probably encountered the famous “Cannot format system partition” and “Please configure your router to forward port 23 to DiskStation and contact Synology online support”.
+Yeah, it sucks.
+It sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don’t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2012-12-08T21:28:00+00:00">
+    <meta property="article:modified_time" content="2012-12-08T21:28:00+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Synology&#39;s &#34;secret&#34; telnet password">
+<meta name="twitter:description" content="If you have a Synology NAS and had some sort of disk crash in the past, you&rsquo;ve probably encountered the famous &ldquo;Cannot format system partition&rdquo; and &ldquo;Please configure your router to forward port 23 to DiskStation and contact Synology online support&rdquo;.
+Yeah, it sucks.
+It sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don&rsquo;t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Synology's \"secret\" telnet password",
+      "item": "https://wrgms.com/synologys-secret-telnet-password/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Synology's \"secret\" telnet password",
+  "name": "Synology\u0027s \u0022secret\u0022 telnet password",
+  "description": "If you have a Synology NAS and had some sort of disk crash in the past, you\u0026rsquo;ve probably encountered the famous \u0026ldquo;Cannot format system partition\u0026rdquo; and \u0026ldquo;Please configure your router to forward port 23 to DiskStation and contact Synology online support\u0026rdquo;.\nYeah, it sucks.\nIt sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don\u0026rsquo;t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "If you have a Synology NAS and had some sort of disk crash in the past, you’ve probably encountered the famous “Cannot format system partition” and “Please configure your router to forward port 23 to DiskStation and contact Synology online support”.\nYeah, it sucks.\nIt sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don’t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.\nYou’ve probably tried telneting to your NAS. Maybe you’ve even tried opening the case and hacking the serial port, only to discover that you don’t have the root password. The DS Assistant password doesn’t work, and you exhausted all obvious guesses - blank, synopass, synology, password, admin, root, etc.\nWell, what about c12-0804? No, I didn’t make this up. This is today’s password.\nBut if you’re reading this a few days (or years) from now, too bad; it won’t work. Unless, of course, you wait until December 8th. Because the password repeats every year.\nBasically Synology hardcoded a modified login binary within the firmware that accepts an obfuscated password for root, which depends on the current date. (by the way, this isn’t the only thing Synology folks hardcoded in the firmware).\nThanks to GPL, Synology was forced to publish the original source code for the firmware. Based on the original correct_password.c code, I hacked a short snippet to generate the daily password.\nHere’s the Synology Telnet password generator:\n#include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;time.h\u0026gt; #include \u0026lt;stdio.h\u0026gt; void main() { struct timeval tvTime; struct tm tmOutput; gettimeofday(\u0026amp;tvTime, 0); localtime_r(\u0026amp;(tvTime.tv_sec), \u0026amp;tmOutput); tmOutput.tm_mon += 1; printf(\"password for today is: %x%02d-%02x%02d\\n\\n\", tmOutput.tm_mon, tmOutput.tm_mon, tmOutput.tm_mday, gcd(tmOutput.tm_mon, tmOutput.tm_mday)); } int gcd(int a, int b) { return (b?gcd(b,a%b):a); } Compile and run the code above with gcc. You can also use the excellent Codepad Repl.it to run the code online and get the password for today (no registration needed).\nBonus tip: if you’re curious how exactly the password is generated, here’s the algorithm:\n1st character = month in hexadecimal, lower case (1=Jan, … , a=Oct, b=Nov, c=Dec) 2-3 = month in decimal, zero padded and starting in 1 (01, 02, 03, …, 11, 12) 4 = dash 5-6 = day of the month in hex (01, 02 .., 0A, .., 1F) 7-8 = greatest common divisor between month and day, zero padded. This is always a number between 01 and 12. So, let’s say today is October 15, the password would be: a10-0f05 where a = month in hex, 10 = month in decimal, 0f = day in hex, 05 = greatest divisor between 10 and 15).\nIf you have trouble calculating the greatest common divisor (elementary math, anyone?), Wolfram Alpha is your friend.\nThis was tested on a Synology DS212+, with Marvell Kirkwood mv6282 chipset. It’s unlikely but still possible that different models use a different algorithm. YMMV, so always check the source code.\n[UPDATE 1: Several users reported that this works in many other models, including DS409, DS112j, etc. Please leave a comment with your model and firmware version.]\n[UPDATE 2: If it doesn’t work, it’s probably that your date is incorrect in the NAS. Per Patrick’s suggestion in the comments below, try “101-0101”, which is the password for Jan 01]\n",
+  "wordCount" : "557",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2012-12-08T21:28:00Z",
+  "dateModified": "2012-12-08T21:28:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/synologys-secret-telnet-password/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

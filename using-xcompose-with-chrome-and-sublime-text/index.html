@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated) | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/)
@@ -57,7 +57,78 @@ If you use US International keyboard on Linux (e.g., if you write in Spanish or 
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)">
+  <meta property="og:description" content="[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/) (note: this post was updated in May 2020 to reflect it works with Ubuntu 20.04 and Gnome 3.36.1. It has also been tested with Ubuntu 18.04 and Gnome 3.28.1. Original title “Using .XCompose with Chrome and Sublime Text”)
+If you use US International keyboard on Linux (e.g., if you write in Spanish or Brazilian Portuguese), you know the royal pain of having to press space after the compose character (typically &#39;). Contractions like can’t, won’t, Mary’s, etc are a struggle, as you have to press space after &#39;, otherwise you’ll get canť, wonť, Maryś, etc.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2014-09-21T07:31:11+00:00">
+    <meta property="article:modified_time" content="2014-09-21T07:31:11+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)">
+<meta name="twitter:description" content="[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/)
+(note: this post was updated in May 2020 to reflect it works with Ubuntu 20.04 and Gnome 3.36.1. It has also been tested with Ubuntu 18.04 and Gnome 3.28.1. Original title &ldquo;Using .XCompose with Chrome and Sublime Text&rdquo;)
+If you use US International keyboard on Linux (e.g., if you write in Spanish or Brazilian Portuguese), you know the royal pain of having to press space after the compose character (typically &#39;). Contractions like can&rsquo;t, won&rsquo;t, Mary&rsquo;s, etc are a struggle, as you have to press space after &#39;, otherwise you&rsquo;ll get canť, wonť, Maryś, etc.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)",
+      "item": "https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)",
+  "name": "Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)",
+  "description": "[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/) (note: this post was updated in May 2020 to reflect it works with Ubuntu 20.04 and Gnome 3.36.1. It has also been tested with Ubuntu 18.04 and Gnome 3.28.1. Original title \u0026ldquo;Using .XCompose with Chrome and Sublime Text\u0026rdquo;)\nIf you use US International keyboard on Linux (e.g., if you write in Spanish or Brazilian Portuguese), you know the royal pain of having to press space after the compose character (typically '). Contractions like can\u0026rsquo;t, won\u0026rsquo;t, Mary\u0026rsquo;s, etc are a struggle, as you have to press space after ', otherwise you\u0026rsquo;ll get canť, wonť, Maryś, etc.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/) (note: this post was updated in May 2020 to reflect it works with Ubuntu 20.04 and Gnome 3.36.1. It has also been tested with Ubuntu 18.04 and Gnome 3.28.1. Original title “Using .XCompose with Chrome and Sublime Text”)\nIf you use US International keyboard on Linux (e.g., if you write in Spanish or Brazilian Portuguese), you know the royal pain of having to press space after the compose character (typically '). Contractions like can’t, won’t, Mary’s, etc are a struggle, as you have to press space after ', otherwise you’ll get canť, wonť, Maryś, etc.\nIt’s even more painful if you ever used Windows, as the US Intl Keyboard works fine out of the box. It’s a shame that Linux keyboard is still horribly broken by default (some may say it’s by design; no, it’s not).\nIt has been asked before, but most answers will point you to use xim, which will open another can of worms. You’ll end up in a rabbit hole of Chrome bugs and intrincate workarounds to make Sublime work (spoiler: it won’t). Before you realize, the night is gone.\nAfter spending a lot of time troubleshooting, I got to a deceptively simple arrangement, allowing .XCompose customizations in GTK+, QT, Aura (Chromium), and even plain terminal:\nJust use uim.\nGet rid of the default iBus, xim and everything else, and just go with uim.\nOf course, YMMV. I’m running Ubuntu 14.04 with Gnome 3.12.1, and using Chrome v38.0.2125.66 beta, and Sublime Text 3, build 3064. (oh the version inflation! Now tested with Ubuntu 20.04, Gnome 3.36, Chrome 81, Sublime Text 3 build 3210)\nThis also has the added benefit of allowing Unicode characters using Ctrl+Shift+U.\nNote that Sublime overrides the default keybinding for Ctrl+Shift+U with soft_redo (source ). You have two options here: 1) edit the default keybinding file - which is not recommended, as it’ll be overwritten on your next upgrade, or 2) use Ctrl+Shift+Alt+U. I’ve chosen the latter.\nDetailed instructions:\nInstall uim with sudo apt install uim Check which inputs you have installed with im-config -l. Keep only uim and xim (optional, but recommended); remove the rest with apt remove ibus etc Use im-config -n uim to set the default input to uim System Config, Regional Settings, select “US, intl with dead keys” System Config, Language Support, confirm you have uim under Keyboard input method system. If you removed the other input systems, you should have only uim/none here Add the following lines to /etc/environment: GTK_IM_MODULE=uim QT_IM_MODULE=uim xmodmap -e 'keycode 48 = dead_acute dead_diaeresis dead_acute dead_diaeresis acute diaeresis' Download this .XCompose file and put in your home directory, using curl -L http://bit.ly/XCompose2 \u003e ~/.XCompose Log out, log back in and enjoy! Don’t forget to say thanks to @tamh, who did all the hard work to map the correct keys.\n",
+  "wordCount" : "469",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2014-09-21T07:31:11Z",
+  "dateModified": "2014-09-21T07:31:11Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

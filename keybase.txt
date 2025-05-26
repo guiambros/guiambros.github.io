@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/guiambros
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://wrgms.com
+  * I am guiambros (https://keybase.io/guiambros) on keybase.
+  * I have a public key with fingerprint CF84 6914 DD14 8321 395D  2304 DF2C DE44 DB08 BC8F
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.3.3"
+        },
+        "key": {
+            "fingerprint": "cf846914dd148321395d2304df2cde44db08bc8f",
+            "host": "keybase.io",
+            "key_id": "DF2CDE44DB08BC8F",
+            "uid": "f95b969100bde9f03f53e7cd457f3200",
+            "username": "guiambros"
+        },
+        "merkle_root": {
+            "ctime": 1400554706,
+            "hash": "1094c00db888a2706014d265f7045480d13a4950fbc84c71ac75fc011f807ac4277bc2d5694827f68c4074e9a197c5ad0850c3ece275b81b233991fa9e3619b4",
+            "seqno": 9751
+        },
+        "service": {
+            "hostname": "wrgms.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1400554802,
+    "expire_in": 157680000,
+    "prev": "068e1cb37cfc61e04c1e13717dead8c5ccdd5a9017e80c3261baae711b9eb992",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+owFVkn9olVUYx+9d6jbJjAohWG28I6Mc13Pe95z3nHOxsm2JK/+QpVMMup5f7927
+7d737n3f3bnd1vphv5BYYARBo5CY2BRRIfxDhNlWSv0XkvOiYqOfG0kKkZbQecei
+PH+d8zzf832ezznPe6vuStWkr7Rcbq/WnRpLf/2LSD0/PGNXLBGoIStbsWSfr4tx
+sivygrayVq8eEjzSGT9oKgZKZ3qipiVNi1XWYeQHRaMCGSfjWCMtiTy57PnFvA5L
+oZ94WdKjyGUQKQURdWzoMKxsByDl2VJphJQAVEjqGcvuIIrvqGoteuZ8ZaLtm+y2
+9mcQam8FtLWNbjK5gcWEx7BgpgIAQmnmAcfDjiZSIUw8xwYgEUY6XELKD/i8IMIg
+Shou6LC3T+fCIFiklrGfaCACAGNEgGta4lG3uQUBQxIAJSil3DYZYIBsF3sEIIwo
+UNDhiGHgGRIkCeSSYE8CCD0KCJfIJkRIW2GXIWoTz6USAYI045ARibkCFAPpaKlt
+ggWFwnYcxqDHmXZcyAQyDJHuLwZWlhEMR5JTWPalTrpOXm0JbjDMF6KMDApGXwqD
+OJBBnwl3x3EpyibA8VBpUadFzjhMJhY54ReV+bH/f2lS4c7HoMBusfSekh/qnJ8o
+MHEpMCsppMvJFLhUQykcIj3pQg2QhBo6BBKluaISS6kU5gxAoqlhtV0oONcEQsG0
+YMz+DxEa05jnjWfk54s8Hgi1NfJOumFZKl2TWrG8Jhna1Mr6e/+d5Ne+rEt9tWrL
+PTsGD12fmmiaWnP84VeidaVLXS+936kfrC6bnz/X+42//NPO7G1ZO3218dHjV+q2
+zH2PV09tuDb91+xoeH5yz9ze0y9X529Vml98azjubGx8aO+B2Q9aO0bR7xPjG8v1
+NyvrL3cdGT+j3ly5/fP9r4LZ2vK7C4d/+rX5kRW31GT62MLB1I3Kup6bxyauvn59
+Zny42ndfNLOv+YX0xV12uvzE4CV+duPfFz5+4wbe/Me507vPfrj5u/OfbBurdj35
+Z9vWDUfX3t514VrH4/794OK3C7vnfutfv//t7Bf7Ok6Orv7oqdqxtc968z2DA2DH
+c6NPN5z4LHis4YfJNfVz0w/83IHkzn569489/wA=
+=uUR2
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/guiambros
+
+==================================================================

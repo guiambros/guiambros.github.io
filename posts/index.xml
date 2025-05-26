@@ -236,7 +236,8 @@
       <link>https://wrgms.com/entering-single-user-mode-on-a-synology/</link>
       <pubDate>Sat, 26 Jan 2013 03:40:00 +0000</pubDate>
       <guid>https://wrgms.com/entering-single-user-mode-on-a-synology/</guid>
-      <description>&lt;p&gt;I hope this will be my last post about Synology for a while.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2013/01/synology.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I hope this will be my last post about Synology for a while.&lt;/p&gt;
 &lt;p&gt;After dealing for a few weeks with an &lt;a href=&#34;http://forum.synology.com/enu/viewtopic.php?f=221&amp;amp;t=59808&amp;amp;start=45#p232455&#34;&gt;unstable environment&lt;/a&gt;, then &lt;a href=&#34;https://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial&#34;&gt;hacking a serial console&lt;/a&gt; to troubleshoot, then &lt;a href=&#34;https://wrgms.com/synologys-secret-telnet-password/&#34;&gt;cracking the secret recovery telnet password&lt;/a&gt; just for fun, and finally solving the &lt;a href=&#34;http://serverfault.com/questions/458553/cant-log-in-via-ssh-to-any-accounts-set-to-use-bin-bash-as-a-default-shell/&#34;&gt;weird mistery&lt;/a&gt; of SSH &lt;a href=&#34;https://wrgms.com/reverse-engineering-synology-openssh&#34;&gt;not accepting /bin/bash as default shell&lt;/a&gt;, I thought I finally had a stable environment. Wrong.&lt;/p&gt;
 &lt;p&gt;But this time I was the one to blame.&lt;/p&gt;
 &lt;p&gt;After solving the conflict with bash, I changed &lt;code&gt;/etc/passwd&lt;/code&gt; user shell to &lt;code&gt;/bin/bash&lt;/code&gt;. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.&lt;/p&gt;</description>

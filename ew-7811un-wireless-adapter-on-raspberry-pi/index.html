@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>EW-7811Un wireless adapter on Raspberry Pi | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27&#43;, my wireless adapter EW-7811Un stopped working.
@@ -73,7 +73,95 @@ After reboot you should have wlan0. You may need to configure your wireless netw
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/ew-7811un-wireless-adapter-on-raspberry-pi/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="EW-7811Un wireless adapter on Raspberry Pi">
+  <meta property="og:description" content="After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27&#43;, my wireless adapter EW-7811Un stopped working.
+Here’s the fix:
+su - root mkdir ~/drivers cd ~/drivers wget http://dl.dropbox.com/u/80256631/8192cu-latest.tar.gz tar zxvf 8192cu-latest.tar.gz cd 8192cu-latest install -p -m 644 8192cu.ko /lib/modules/3.2.27&#43;/kernel/drivers/net/wireless depmod -a cat &lt;&lt;EOF &gt;&gt; /etc/modprobe.d/blacklist.conf blacklist rtl8192cu EOF cat &lt;&lt;EOF &gt;&gt; /etc/modules 8192cu EOF shutdown -r now After reboot you should have wlan0. You may need to configure your wireless network if you didn’t so already, by editing /etc/network/interface. Recommended that you use wpa_passphrase to generate your encrypted wifi password:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2012-09-16T19:24:00+00:00">
+    <meta property="article:modified_time" content="2012-09-16T19:24:00+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="EW-7811Un wireless adapter on Raspberry Pi">
+<meta name="twitter:description" content="After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27&#43;, my wireless adapter EW-7811Un stopped working.
+Here&rsquo;s the fix:
+su - root
+mkdir ~/drivers
+cd ~/drivers
+wget http://dl.dropbox.com/u/80256631/8192cu-latest.tar.gz
+tar zxvf 8192cu-latest.tar.gz
+cd 8192cu-latest
+install -p -m 644 8192cu.ko /lib/modules/3.2.27&#43;/kernel/drivers/net/wireless
+depmod -a
+cat &lt;&lt;EOF &gt;&gt; /etc/modprobe.d/blacklist.conf
+blacklist rtl8192cu
+EOF
+cat &lt;&lt;EOF &gt;&gt; /etc/modules
+8192cu
+EOF
+shutdown -r now
+
+After reboot you should have wlan0. You may need to configure your wireless network if you didn&rsquo;t so already, by editing /etc/network/interface. Recommended that you use wpa_passphrase to generate your encrypted wifi password:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "EW-7811Un wireless adapter on Raspberry Pi",
+      "item": "https://wrgms.com/ew-7811un-wireless-adapter-on-raspberry-pi/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "EW-7811Un wireless adapter on Raspberry Pi",
+  "name": "EW-7811Un wireless adapter on Raspberry Pi",
+  "description": "After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27+, my wireless adapter EW-7811Un stopped working.\nHere\u0026rsquo;s the fix:\nsu - root mkdir ~/drivers cd ~/drivers wget http://dl.dropbox.com/u/80256631/8192cu-latest.tar.gz tar zxvf 8192cu-latest.tar.gz cd 8192cu-latest install -p -m 644 8192cu.ko /lib/modules/3.2.27+/kernel/drivers/net/wireless depmod -a cat \u0026lt;\u0026lt;EOF \u0026gt;\u0026gt; /etc/modprobe.d/blacklist.conf blacklist rtl8192cu EOF cat \u0026lt;\u0026lt;EOF \u0026gt;\u0026gt; /etc/modules 8192cu EOF shutdown -r now After reboot you should have wlan0. You may need to configure your wireless network if you didn\u0026rsquo;t so already, by editing /etc/network/interface. Recommended that you use wpa_passphrase to generate your encrypted wifi password:\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27+, my wireless adapter EW-7811Un stopped working.\nHere’s the fix:\nsu - root mkdir ~/drivers cd ~/drivers wget http://dl.dropbox.com/u/80256631/8192cu-latest.tar.gz tar zxvf 8192cu-latest.tar.gz cd 8192cu-latest install -p -m 644 8192cu.ko /lib/modules/3.2.27+/kernel/drivers/net/wireless depmod -a cat \u003c\u003e /etc/modprobe.d/blacklist.conf blacklist rtl8192cu EOF cat \u003c\u003e /etc/modules 8192cu EOF shutdown -r now After reboot you should have wlan0. You may need to configure your wireless network if you didn’t so already, by editing /etc/network/interface. Recommended that you use wpa_passphrase to generate your encrypted wifi password:\nwpa_passphrase mywirelessnetwork_SSID Then edit `/etc/wpa_supplicant.conf`, using the output of wpa_passphrase: ctrl_interface=/var/run/wpa_supplicant network={ ssid=\"mywirelessnetwork_SSID\" scan_ssid=1 proto=RSN key_mgmt=WPA-PSK pairwise=CCMP group=CCMP psk=....... } And lastly: cat \u003c\u003c\u003cEOF \u003e\u003e /etc/network/interfaces iface wlan0 inet dhcp pre-up wpa_supplicant -Dwext -i wlan0 -c /etc/wpa_supplicant.conf -B EOF Now enjoy the WiFi back on your Pi again.\nThanks to Wolf Paulus, who solved the problem with Kernel 3.2.27+ and provided links for the compiled binaries.\n",
+  "wordCount" : "157",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2012-09-16T19:24:00Z",
+  "dateModified": "2012-09-16T19:24:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/ew-7811un-wireless-adapter-on-raspberry-pi/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Entering Single User Mode On A Synology | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="
@@ -59,7 +59,83 @@ After solving the conflict with bash, I changed /etc/passwd user shell to /bin/b
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/entering-single-user-mode-on-a-synology/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Entering Single User Mode On A Synology">
+  <meta property="og:description" content="
+I hope this will be my last post about Synology for a while.
+After dealing for a few weeks with an unstable environment, then hacking a serial console to troubleshoot, then cracking the secret recovery telnet password just for fun, and finally solving the weird mistery of SSH not accepting /bin/bash as default shell, I thought I finally had a stable environment. Wrong.
+But this time I was the one to blame.
+After solving the conflict with bash, I changed /etc/passwd user shell to /bin/bash. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2013-01-26T03:40:00+00:00">
+    <meta property="article:modified_time" content="2013-01-26T03:40:00+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Entering Single User Mode On A Synology">
+<meta name="twitter:description" content="
+I hope this will be my last post about Synology for a while.
+After dealing for a few weeks with an unstable environment, then hacking a serial console to troubleshoot, then cracking the secret recovery telnet password just for fun, and finally solving the weird mistery of SSH not accepting /bin/bash as default shell, I thought I finally had a stable environment. Wrong.
+But this time I was the one to blame.
+After solving the conflict with bash, I changed /etc/passwd user shell to /bin/bash. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Entering Single User Mode On A Synology",
+      "item": "https://wrgms.com/entering-single-user-mode-on-a-synology/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Entering Single User Mode On A Synology",
+  "name": "Entering Single User Mode On A Synology",
+  "description": "\nI hope this will be my last post about Synology for a while.\nAfter dealing for a few weeks with an unstable environment, then hacking a serial console to troubleshoot, then cracking the secret recovery telnet password just for fun, and finally solving the weird mistery of SSH not accepting /bin/bash as default shell, I thought I finally had a stable environment. Wrong.\nBut this time I was the one to blame.\nAfter solving the conflict with bash, I changed /etc/passwd user shell to /bin/bash. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "\nI hope this will be my last post about Synology for a while.\nAfter dealing for a few weeks with an unstable environment, then hacking a serial console to troubleshoot, then cracking the secret recovery telnet password just for fun, and finally solving the weird mistery of SSH not accepting /bin/bash as default shell, I thought I finally had a stable environment. Wrong.\nBut this time I was the one to blame.\nAfter solving the conflict with bash, I changed /etc/passwd user shell to /bin/bash. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.\nAfter a few moments of panic, I remembered I still had the serial console. So I could put Linux in single user mode, and drop into recovery mode.\nSo if you’re ever in a similar situation, here’s how to fix it:\n1. First, you need a serial console.\n2. During U-Boot, press any key to cancel the automatic kernel boot (Hit any key to stop autoboot).\n3. Enter printenv to check the environment variables. Search for bootargs and bootm variables (they will be different on your system, so do NOT copy and paste from mine, unless you have a Synology DS212+ with the same DSM).\n4. Append reboot=cold,hard emergency init=/bin/sh to the end of bootargs variable. In my case, this is what I used:\nsetenv bootargs 'console=ttyS0,115200 ip=off initrd=0x00800040,4M root=/dev/md0 rw syno_hw_version=DS212pv20 ihd_num=2 netif_num=1 esata_7042=1 reboot=cold,hard emergency init=/bin/sh' (again, your parameters will likely be different, so don’t copy and paste)\n5. Boot your kernel, with\nbootm F8080000 F8280000 Now your Synology should be happily botting in single user mode, ignoring /etc/passwd and dropping you to a plain shell. Do what you have to do to fix the system, and reboot.\nYou can also use these steps to recover your system partition from a crash or other problem.\n",
+  "wordCount" : "331",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2013-01-26T03:40:00Z",
+  "dateModified": "2013-01-26T03:40:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/entering-single-user-mode-on-a-synology/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

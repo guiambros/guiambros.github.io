@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Disable &#34;Mouse battery low&#34; spam notification on Ubuntu | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="I use a Logitech Performance MX wireless mouse, on Ubuntu 18.10 (Cosmic Cuttlefish), with Gnome 3.30.2 Ubuntu 20.04, with Gnome 3.36.2.
@@ -57,7 +57,79 @@ The problem is that Ubuntu&rsquo;s power system tries to detect how much voltage
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/disable-mouse-battery-low-spam-notification/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Disable &#34;Mouse battery low&#34; spam notification on Ubuntu">
+  <meta property="og:description" content="I use a Logitech Performance MX wireless mouse, on Ubuntu 18.10 (Cosmic Cuttlefish), with Gnome 3.30.2 Ubuntu 20.04, with Gnome 3.36.2.
+This mouse uses regular 1.2V AA NiMH rechargeable battery1, which usually lasts 3 months on a single charge
+The problem is that Ubuntu’s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 weeks before it really runs out.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-06-02T23:47:42+00:00">
+    <meta property="article:modified_time" content="2019-06-02T23:47:42+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Disable &#34;Mouse battery low&#34; spam notification on Ubuntu">
+<meta name="twitter:description" content="I use a Logitech Performance MX wireless mouse, on Ubuntu 18.10 (Cosmic Cuttlefish), with Gnome 3.30.2 Ubuntu 20.04, with Gnome 3.36.2.
+This mouse uses regular 1.2V AA NiMH rechargeable battery1, which usually lasts 3 months on a single charge
+The problem is that Ubuntu&rsquo;s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 weeks before it really runs out.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Disable \"Mouse battery low\" spam notification on Ubuntu",
+      "item": "https://wrgms.com/disable-mouse-battery-low-spam-notification/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Disable \"Mouse battery low\" spam notification on Ubuntu",
+  "name": "Disable \u0022Mouse battery low\u0022 spam notification on Ubuntu",
+  "description": "I use a Logitech Performance MX wireless mouse, on Ubuntu 18.10 (Cosmic Cuttlefish), with Gnome 3.30.2 Ubuntu 20.04, with Gnome 3.36.2.\nThis mouse uses regular 1.2V AA NiMH rechargeable battery1, which usually lasts 3 months on a single charge\nThe problem is that Ubuntu\u0026rsquo;s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 weeks before it really runs out.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "I use a Logitech Performance MX wireless mouse, on Ubuntu 18.10 (Cosmic Cuttlefish), with Gnome 3.30.2 Ubuntu 20.04, with Gnome 3.36.2.\nThis mouse uses regular 1.2V AA NiMH rechargeable battery1, which usually lasts 3 months on a single charge\nThe problem is that Ubuntu’s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 weeks before it really runs out.\nThe worse part is that these notifications won’t fade away after a few seconds like you’d expect. And to make it more infuriating, they have an audible alert, and show up after a every period of brief inactivity, which means you’ll get dozens of notifications per day – and you’ll will need to click to dismiss them every single time.\nI don’t really need to be notified two months in advance on a mouse battery (or at all). When it runs out, I can just connect the cable. It’s not like a printer, that you need to buy ink in advance.\nIt seems I’m not alone: tons of users have reported the same problem for years (1, or 2, or 3), but no solution.\nIt seems that upower developers recognize that the battery % should be ignored, but still emits warnings on low battery, and Gnome Settings Daemon doesn’t offer any way to selectively disable or control these notifications:\n$ upower --dump Device: /org/freedesktop/UPower/devices/mouse_hidpp_battery_12 native-path: hidpp_battery_12 model: Performance MX serial: 104a-8a-10-ee-9b power supply: no updated: Sun Jun 2 18:09:54 2019 (15 seconds ago) has history: yes has statistics: yes mouse present: yes rechargeable: yes state: discharging warning-level: none battery-level: critical percentage: 5% (should be ignored) ◀◀◀ icon-name: 'battery-caution-symbolic' Most of the workarounds I found involve patching gnome-settings-daemon (which I’ve done before, but for different reasons), or disabling power notifications entirely. I dislike both solutions, and wanted to selectively disable only mouse battery notifications, without touching anything else.\nThanks to a tip by @daFritz84, I decided to patch upowerd directly (although I used a different method than Stefan). The good news is that upower has few dependencies, so it’s pretty straightforward to compile and patch your system.\nHere’s the patch to be applied over up-device.c:\n--- up-device.c\t2019-06-15 00:18:57.607554731 -0400 +++ up-device-silent.c\t2019-06-15 00:19:03.207705276 -0400 @@ -63,6 +63,15 @@ UpDeviceLevel warning_level, battery_level; UpExportedDevice *skeleton = UP_EXPORTED_DEVICE (device); +\t/* Disable warning notifications for wireless mice with rechargeable batteries */ +\tint type = up_exported_device_get_type_ (skeleton); +\tint state = up_exported_device_get_state(skeleton); +\tif (type == UP_DEVICE_KIND_MOUSE \u0026\u0026 state == UP_DEVICE_STATE_DISCHARGING) { +\twarning_level = UP_DEVICE_LEVEL_NONE; +\tup_exported_device_set_warning_level (skeleton, warning_level); +\treturn; +\t} + /* Not finished setting up the object? */ if (device-\u003epriv-\u003edaemon == NULL) return; (Update 2021-07: the latest upower 0.99.12 changed structured slightly, so you need to use the updated patch)\nHere’s the step-by-step, tested on Ubuntu 18.04, 20.04, 20.10, 21.04, and Manjaro (disclaimer: provided as is; you are responsible for checking the accuracy of the patch and ensure it won’t ruin your system. Having said that, let me know in the comments below if it doesn’t work for you, and I’ll try to incorporate new distributions over time):\n#!/bin/bash set -e # See https://wrgms.com/disable-mouse-battery-low-spam-notification/ # for instructions on how to use it # # TL;DR: run with \"--keyboard\" if you want to patch upower to ignore both # mice and keyboard notifications (by default it ignores only mice) # Check distro and upower version in use, and install required libraries # echo echo \"------------------------------\" upower --version echo \"------------------------------\" echo UPOWER_ORIG_VER=`upower --version` OS=`awk -F= '/^ID=/{print $2}' /etc/os-release` OS_VER=`awk -F= '/^VERSION_ID=/{print $2}' /etc/os-release | cut -d \"\\\"\" -f 2` OS_VER_MAJOR=`echo ${OS_VER} | awk -F. '{print $1}'` PATCH_LEGACY_URL=\"https://gist.githubusercontent.com/guiambros/f2bf07f1cc085f8f0b0a9e04c0a767b4/raw/73efac967c8fc9539802e7aa8eeba5492f8ae3b1/up-device-legacy.patch\" PATCH_CURRENT_URL=\"https://gist.githubusercontent.com/guiambros/f2bf07f1cc085f8f0b0a9e04c0a767b4/raw/73efac967c8fc9539802e7aa8eeba5492f8ae3b1/up-device-current-0.99.12p.patch\" PATCH_NAME=\"up-device.patch\" PATCH_URL=${PATCH_CURRENT_URL} if [ \"$OS\" == \"manjaro\" ] then echo \"-- Manjaro detected; installing required libraries\" sudo pacman -S base-devel gtk-doc gobject-introspection git PATH_UPOWERD=\"/usr/lib\" PATH_UPOWER=\"/usr/bin\" elif [ \"$OS\" == \"ubuntu\" ] then echo \"-- Ubuntu detected; installing required libraries\" sudo apt install -y git gtk-doc-tools gobject-introspection libgudev-1.0-dev libusb-1.0-0-dev autoconf libtool autopoint PATH_UPOWER=\"/usr/bin\" if [ \"${OS_VER}\" == \"20.10\" ] then echo \"--- Ubuntu version 20.10 (Groovy Gorilla) detected\" PATH_UPOWERD=\"/usr/libexec\" UPOWER_BRANCH=\"UPOWER_0_99_11\" PATCH_URL=${PATCH_LEGACY_URL} elif [ ${OS_VER_MAJOR} -ge 21 ] then echo \"--- Ubuntu version 21 or above detected\" PATH_UPOWERD=\"/usr/libexec\" UPOWER_BRANCH=\"UPOWER_0_99_11\" PATCH_URL=${PATCH_LEGACY_URL} elif [ ${OS_VER_MAJOR} -le 20 ] then echo \"--- Ubuntu version 20.04 or lower detected\" PATH_UPOWERD=\"/usr/lib/upower\" UPOWER_BRANCH=\"UPOWER_0_99_11\" PATCH_URL=${PATCH_LEGACY_URL} fi else echo \"-- Unknown system; this script was only tested on ubuntu and manjaro.\" exit 1 fi echo \"------------------------------\" echo # Download upowerd source and selects the proper branch # cd ~ git clone https://gitlab.freedesktop.org/upower/upower if [ -z ${UPOWER_BRANCH} ] then echo \"-- Using latest master branch (0.99.12 or above)\" cd upower/src else echo \"-- Using branch ${UPOWER_BRANCH} (latest compatible with your distro)\" cd upower git fetch --all --tags git checkout tags/${UPOWER_BRANCH} -b ${UPOWER_BRANCH} cd src fi # Download and patch upowerd # wget ${PATCH_URL} -O ${PATCH_NAME} if [ \"$1\" == \"-keyboard\" ] || [ \"$1\" == \"--keyboard\" ]; then SILENCE_KEYBOARD=\"+ if ((type == UP_DEVICE_KIND_MOUSE || type == UP_DEVICE_KIND_KEYBOARD) \u0026\u0026 state == UP_DEVICE_STATE_DISCHARGING) {\" sed -i \"/UP_DEVICE_KIND_MOUSE/c${SILENCE_KEYBOARD}\" ${PATCH_NAME} fi patch -F 1 \u003c ${PATCH_NAME} # Compile upowerd # cd .. ./autogen.sh ./configure make # Install upowerd # CUR_DATETIME=`date +%Y-%m-%d-%H%M%S` pushd . cd src/.libs strip upowerd sudo chown root.root upowerd sudo mv upowerd ${PATH_UPOWERD}/upowerd-silent cd ${PATH_UPOWERD} sudo mv upowerd upowerd-original-${CUR_DATETIME} sudo ln -s upowerd-silent upowerd popd # Install upower # pushd . cd tools/.libs strip upower sudo chown root.root upower sudo mv upower ${PATH_UPOWER}/upower-silent cd ${PATH_UPOWER} sudo mv upower upower-original-${CUR_DATETIME} sudo ln -s upower-silent upower popd # Restart upowerd # sudo systemctl restart upower # Compare versions before/after (they will likely be different, but it depends on what your distro packages by default) # echo echo \"------------------------------\" echo \"upower version BEFORE the update:\" echo \"${UPOWER_ORIG_VER}\" echo \"------------------------------\" echo \"upower version AFTER the update:\" upower --version For convenience, here’s the script. You can run with:\nwget -O - https://gist.githubusercontent.com/guiambros/166039459a8579638b57f7d135505ab1/raw/733b8dd3ac3280bb76f48ba3dc04655df6d69025/silent-mouse.sh | bash UPDATE: by default this disables mouse notifications only. If you want to disable keyboard notifications as well, run the script above passing --keyboard as a parameter. More specifically:\nwget -O - https://gist.githubusercontent.com/guiambros/166039459a8579638b57f7d135505ab1/raw/733b8dd3ac3280bb76f48ba3dc04655df6d69025/silent-mouse.sh | bash -s -- --keyboard Now enjoy your low battery spam-free system :) Let me know in the comments below if it works for you.\n1My old Performance MX uses a replaceable battery; the Performance MX 3 uses an internal non-replaceable battery that lasts even longer\n",
+  "wordCount" : "1061",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2019-06-02T23:47:42Z",
+  "dateModified": "2019-06-02T23:47:42Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/disable-mouse-battery-low-spam-notification/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

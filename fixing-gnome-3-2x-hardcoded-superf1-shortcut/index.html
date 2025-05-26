@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.
@@ -57,7 +57,79 @@ One thing I enjoyed over the years was the ability to customize my keyboard shor
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Fixing Gnome 3.2x hardcoded &#43; shortcut">
+  <meta property="og:description" content="Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.
+I’ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (keyboard, extensions, application menu, etc), but I’m quite happy with everything. Or almost everything.
+One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-06-03T13:06:51+00:00">
+    <meta property="article:modified_time" content="2018-06-03T13:06:51+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut">
+<meta name="twitter:description" content="Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.
+I&rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (keyboard, extensions, application menu, etc), but I&rsquo;m quite happy with everything. Or almost everything.
+One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Fixing Gnome 3.2x hardcoded \u003cSuper\u003e+\u003cF1\u003e shortcut",
+      "item": "https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Fixing Gnome 3.2x hardcoded + shortcut",
+  "name": "Fixing Gnome 3.2x hardcoded \u002b shortcut",
+  "description": "Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.\nI\u0026rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (keyboard, extensions, application menu, etc), but I\u0026rsquo;m quite happy with everything. Or almost everything.\nOne thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.\nI’ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (keyboard, extensions, application menu, etc), but I’m quite happy with everything. Or almost everything.\nOne thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.\nOne of my handy shortcuts is + to open an xterm with superuser, and + for regular user. I use custom xterm profiles, so I can easily check if I’m running under a privileged context by looking at the color of the window.\nThis worked well for years under Ubuntu 14.04 and Gnome 3.20, but stopped working with the upgrade to Bionic Beaver. More specifically, + is now System Help, with no way to change it.\n“No problem”, I thought; this can be easily adjusted in System Settings.\nNops.\nI searched around, and found other folks with the same problem, but no solution.\nI then decided to dug into the source code, and discovered the improbable: Gnome devs decided the help was so important that it deserved its own unique, hardcoded, and immutable shortcut. If you want to reassign it, you’re out of luck.\nAccording to gnome-settings-daemon changelog:\n=============== Version 3.21.90 =============== ... Media keys: - Add Super+F1 as a hardcoded shortcut for launching Help ... REALLY? What’s wrong with a default icon in the toolbar, or maybe a popup window when you boot for the first time? Also, does anyone really care about reading the basic documentation for… a windows manager?\nI wasn’t convinced yet, but a closer look at the source code confirmed my fear: there it was: (file /gnome-settings-daemon/blob/master/plugins/media-keys/shortcuts-list.h):\n{ HELP_KEY, NULL, N_(\"Help\"), \"F1\", GSD_ACTION_MODE_LAUNCHER }, So if you’re really determined to regain control of your +, there’s only one solution: to recompile gnome-settings-daemon, and replace the gsd-media-keys plugin. Spoiler alert: I’m glad to report that my patch was successful, but beware: getting the right dependencies and recompiling Gnome is not an easy feat. Keep reading if you’re interested in doing the same:\nDownload and install Gnome Builder Click on “Clone”, select a local directory (e.g., ~/Projects/) and use the official repo at https://gitlab.gnome.org/GNOME/gnome-settings-daemon Open xterm, and enter cd ~/Projects/gnome-settings-daemon; git checkout tags/GNOME_SETTINGS_DAEMON_3_28_1 (you can check your exact version with gnome-shell --version. Check all tags available with git tag -l) Install all dependencies. These were the ones missing in my system, but YMMV: apt install libcolord-dev \\ libgeocode-glib-dev \\ gnome-desktop3-data \\ libgnome-desktop-3-dev \\ libgweather-3-dev \\ libcanberra-gtk3-dev \\ libgeoclue-2-dev \\ libnotify-dev \\ libpulse-mainloop-glib0 \\ libpulse-dev \\ gobject-introspection \\ libupower-glib-dev \\ libpolkit-gobject-1-dev \\ libasound2-dev \\ libgudev-1.0-dev \\ libwacom-dev \\ libnss3-dev \\ libcups2-dev \\ libnm-dev Patch the source code by editing ~/Projects/gnome-settings-daemon/plugins/media-keys/shortcuts-list.h, and add a comment in front of the offender, like below (for Gnome 3.28.1 it is in line 69): // disabled! // { HELP_KEY, NULL, N_(\"Help\"), \"F1\", GSD_ACTION_MODE_LAUNCHER }, Click [Rebuild] button in the Builder UI to compile (note: you need to click Rebuild, and not Build). You may want to turn off the deprecation warnings by editing meson.build and adding '-Wno-deprecated-declarations' to test_cflags = [...]; (line 70). If you installed all the dependencies correctly, you should have no warnings nor errors. Find the compiled binaries. You’re looking specifically for the plugin gsd-media-keys, so it’ll likely be in the directory ~/.var/app/org.gnome.Builder/cache/gnome-builder/projects/gnome-settings-daemon/builds/default-host-HEAD/plugins/media-keys cd ~/.var/app/org.gnome.Builder/cache/gnome-builder/projects/gnome-settings-daemon/builds/default-host-HEAD/plugins/media-keys ~ cp ./gsd-media-keys ~/gsd-media-keys.patched Before proceeding, you may want to inspect your binary to confirm it successfully linked with shared libraries by using ldd ~/gsd-media-keys.patched. In my case I had problems finding libgsd.so, so I solved it by adding the path to ldconfig (although the correct solution would be to fix this in the build system): sudo sh -c 'echo \"# gnome-settings-daemon\\n/usr/lib/x86_64-linux-gnu/gnome-settings-daemon-3.0/\\n\" \u003e /etc/ld.so.conf.d/gnome-settings-daemon.conf' sudo ldconfig You’re now ready to install the patched gsd-media-keys binary in your system: cd /usr/lib/gnome-settings-daemon/ sudo mv ~/gsd-media-keys.patched . sudo strip -s ./gsd-media-keys.patched sudo mv gsd-media-keys gsd-media-keys.orig sudo ln -s gsd-media-keys.patched gsd-media-keys Log out or reboot, and you’re done! If all goes well, your system now should be running the gsd-media-keys plugin without the + hardcoded, so you can reassign to anything you like.\nIf anything goes wrong and you can’t log in, don’t despair. Simply open a console terminal by using ++ and restore your original gsd-media-keys binary by doing:\ncd /usr/lib/gnome-settings-daemon/ sudo rm gsd-media-keys sudo ln -s gsd-media-keys.orig gsd-media-keys Use + to go back to Gnome and log in again. You can then inspect /var/log/syslog to understand what went wrong (search for “media-keys”). It’s likely that you had problems with the dynamic libraries in step 8 above.\n",
+  "wordCount" : "801",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2018-06-03T13:06:51Z",
+  "dateModified": "2018-06-03T13:06:51Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

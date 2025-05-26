@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Voice Recognition on Embedded Devices - Part 1 | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="I&rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:
@@ -62,7 +62,83 @@ My first thought was to use Google Speech API. The accuracy is great, and it&rsq
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/voice-recognition/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Voice Recognition on Embedded Devices - Part 1">
+  <meta property="og:description" content="I’m currently working to add voice recognition to some of my embedded projects. The requirements are:
+Must be able to listen continuously Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black) Good accuracy on a limited set of words (English only) Decent performance, particularly on low-power CPUs My first thought was to use Google Speech API. The accuracy is great, and it’s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn’t satisfy requirement #1. And I don’t like the idea of streaming all of my personal conversations to anyone. It’s already enough to have NSA listening to my phone calls…">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2014-11-10T03:51:43+00:00">
+    <meta property="article:modified_time" content="2014-11-10T03:51:43+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Voice Recognition on Embedded Devices - Part 1">
+<meta name="twitter:description" content="I&rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:
+
+Must be able to listen continuously
+Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black)
+Good accuracy on a limited set of words (English only)
+Decent performance, particularly on low-power CPUs
+
+My first thought was to use Google Speech API. The accuracy is great, and it&rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn&rsquo;t satisfy requirement #1. And I don&rsquo;t like the idea of streaming all of my personal conversations to anyone. It&rsquo;s already enough to have NSA listening to my phone calls&hellip;">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Voice Recognition on Embedded Devices - Part 1",
+      "item": "https://wrgms.com/voice-recognition/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Voice Recognition on Embedded Devices - Part 1",
+  "name": "Voice Recognition on Embedded Devices - Part 1",
+  "description": "I\u0026rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:\nMust be able to listen continuously Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black) Good accuracy on a limited set of words (English only) Decent performance, particularly on low-power CPUs My first thought was to use Google Speech API. The accuracy is great, and it\u0026rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn\u0026rsquo;t satisfy requirement #1. And I don\u0026rsquo;t like the idea of streaming all of my personal conversations to anyone. It\u0026rsquo;s already enough to have NSA listening to my phone calls\u0026hellip;\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "I’m currently working to add voice recognition to some of my embedded projects. The requirements are:\nMust be able to listen continuously Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black) Good accuracy on a limited set of words (English only) Decent performance, particularly on low-power CPUs My first thought was to use Google Speech API. The accuracy is great, and it’s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn’t satisfy requirement #1. And I don’t like the idea of streaming all of my personal conversations to anyone. It’s already enough to have NSA listening to my phone calls…\n(maybe it’s an option for the future, when implementing something with a physical push-button, like a Star Trek communicator device)\nSiriProxy is another neat hack, but it doesn’t work with iOS7/8 anymore. Apple will soon offer an official interface to Siri via its HomeKit program, but it’ll only work with licensed hardware. Likely not an option for hackers and personal projects.\nAfter some research, I found CMUSphinx project, which seems to be the best project in the area of voice recognition. PocketSphinx toolkit is the version you want for embedded CPUs, as it’s pure C, and rather portable.\nThe documentation is not very friendly, but once you get it going, it works well.\nThe first step is to download and install SphinxBase, followed by PocketSphinx. The README has instructions to compile and install, but it’s the basic\n./configure make make install By default it’ll install binaries to /usr/local/bin, and language models to /usr/local/share. Make sure you have swig and alsa drivers installed before starting (apt-get install swig alsa-base alsa-utils).\nOnce installed, you need to figure out which dictionary model you want to use. Just for testing, I created a dictionary with 106 words, based on the old Logo language (remember the Logo turtle?), like forward, backward, turn right, turn left, etc.\nBefore you can start training PocketSphinx, you’ll need an acoustic model. Sadly, the speech corpus (i.e., audio files with spoken words) used to train the models are usually closed source. So either you spend a couple of hours recording the voices (or using an4/Voxforge) to train your own model, or you’ll skip this entirely and just use some of the built-in models, accepting lower accuracy. Given my limited number of words in the dictionary, I decided to go with built in acoustic models.\nNext, you need to describe your Language Model - the words, grammar, and frequency of words that you want to recognize. This tutorial has more details. If you’re in a hurry and just want to get PocketSphinx going with a dictionary for your pre-defined words, save yourself some trouble and use the online lmtool. This webservice will allow you to upload your dictionary file (a simple ASCII file, with one sentence or word per line), and it’ll generate all the language models you need to run PocketSphinx.\nHere’s a sample of my dictionary file:\nannounce answer ask back clipboard color copy count ... sentence set space square root stamp wait wait until when who word If you want to play with this dictionary, download these files here, and run:\npocketsphinx_continuous -lm lm/logo.lm -dict lm/logo.dic (note: if pocketsphinx is stuck at READY, it’s probably listening to the wrong hw device. Check where is the microphone attached via cat /proc/asound/cards, and add -adcdev plughw:X,0 to the line above, replacing X by the hardware id of your microphone).\npocketsphinx_continuous -lm lm/logo.lm -dict lm/logo.dic -adcdev plughw:2,0 Smartphones use all sorts of tricks to cancel the background noise, but that requires special hardware, so you’ll need a reasonable quiet environment. Otherwise the accuracy will suffer, depending on how large your dictionary is.\nAs you would expect, smaller dictionaries have much better accuracy. With a 100-word, I got 60-70% correct. After I reduced to a simple 15-words dictionary, I got virtually 100% match rate, even with some background noise and a non-American accent. Certainly enough for my projects.\nNext up: running this on a Raspberry Pi, installing a decent openair microphone, and testing overall performance when connected to a home automation system. Stay tuned!\n",
+  "wordCount" : "691",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2014-11-10T03:51:43Z",
+  "dateModified": "2014-11-10T03:51:43Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/voice-recognition/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 

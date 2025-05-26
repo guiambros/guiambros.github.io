@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Reverse Engineering Synology&#39;s OpenSSH | wrgms.com</title>
 <meta name="keywords" content="">
 <meta name="description" content="
@@ -59,7 +59,83 @@ Weird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also n
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://wrgms.com/reverse-engineering-synology-openssh/">
+  <meta property="og:site_name" content="wrgms.com">
+  <meta property="og:title" content="Reverse Engineering Synology&#39;s OpenSSH">
+  <meta property="og:description" content="
+Trying to use a non-standard shell in your Synology DS212&#43; NAS may be an exercise of frustration.
+I’m a bash-lover, and have a bunch of scripts to automate backups, so I wanted to set up default shell to /bin/bash.
+It worked well with root, but when a regular user tries to log in, the connection is terminated with “Permission denied, please try again.”.
+Weird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also not. I even tried compiling bash from source (which took me a full day, just to get ARM GCC to cross compile properly). Nada.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2013-01-21T01:36:00+00:00">
+    <meta property="article:modified_time" content="2013-01-21T01:36:00+00:00">
+      <meta property="og:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrgms.com/images/cover.jpg">
+<meta name="twitter:title" content="Reverse Engineering Synology&#39;s OpenSSH">
+<meta name="twitter:description" content="
+Trying to use a non-standard shell in your Synology DS212&#43; NAS may be an exercise of frustration.
+I&rsquo;m a bash-lover, and have a bunch of scripts to automate backups, so I wanted to set up default shell to /bin/bash.
+It worked well with root, but when a regular user tries to log in, the connection is terminated with &ldquo;Permission denied, please try again.&rdquo;.
+Weird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also not. I even tried compiling bash from source (which took me a full day, just to get ARM GCC to cross compile properly). Nada.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://wrgms.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Reverse Engineering Synology's OpenSSH",
+      "item": "https://wrgms.com/reverse-engineering-synology-openssh/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Reverse Engineering Synology's OpenSSH",
+  "name": "Reverse Engineering Synology\u0027s OpenSSH",
+  "description": "\nTrying to use a non-standard shell in your Synology DS212+ NAS may be an exercise of frustration.\nI\u0026rsquo;m a bash-lover, and have a bunch of scripts to automate backups, so I wanted to set up default shell to /bin/bash.\nIt worked well with root, but when a regular user tries to log in, the connection is terminated with \u0026ldquo;Permission denied, please try again.\u0026rdquo;.\nWeird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also not. I even tried compiling bash from source (which took me a full day, just to get ARM GCC to cross compile properly). Nada.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "\nTrying to use a non-standard shell in your Synology DS212+ NAS may be an exercise of frustration.\nI’m a bash-lover, and have a bunch of scripts to automate backups, so I wanted to set up default shell to /bin/bash.\nIt worked well with root, but when a regular user tries to log in, the connection is terminated with “Permission denied, please try again.”.\nWeird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also not. I even tried compiling bash from source (which took me a full day, just to get ARM GCC to cross compile properly). Nada.\nIn a moment of total despair, I tried setting my regular user to uid=0; if it’s permissions, then this should work, right?\nSorry. Just uid=0 isn’t enough. The user has to be called “root”.\nWHAAAT?\nThankfully, Synology uses a modified Linux distribution, so they publish the code under GPL.\nAfter a couple of hours looking at the OpenSSH source code, things became pretty obvious. Here’s the piece of code from their version of OpenSSH 5.8p1, file session.c:\nvoid do_child(Session *s, const char *command) { ... #ifdef MY_ABC_HERE char szValue[8]; int RunSSH = 0; SSH_CMD SSHCmd = REQ_UNKNOWN; if (1 == GetKeyValue(\"/etc/synoinfo.conf\", \"runssh\", szValue, sizeof(szValue))) { if (strcasecmp(szValue, \"yes\") == 0) { RunSSH = 1; } } if (IsSFTPReq(command)){ SSHCmd = REQ_SFTP; } else if (IsRsyncReq(command)){ SSHCmd = REQ_RSYNC; } else if (IsTimebkpRequest(command)){ SSHCmd = REQ_TIMEBKP; } else if (RunSSH \u0026amp;\u0026amp; IsAllowShell(pw)){ SSHCmd = REQ_SHELL; } else { goto Err; } if (REQ_RSYNC == SSHCmd) { pw = SYNOChgValForRsync(pw); } if (!SSHCanLogin(SSHCmd, pw)) { goto Err; } goto Pass; Err: fprintf(stderr, \"Permission denied, please try again.\\n\"); exit(1); Pass: #endif /* MY_ABC_HERE */ ... } And here is the IsAllowShell(pw):\nstatic int IsAllowShell(const struct passwd *pw) { struct passwd *pUnPrivilege = NULL; char *szUserName = NULL; if (!pw || !pw-\u0026gt;pw_name) { return 0; } szUserName = pw-\u0026gt;pw_name; if(!strcmp(szUserName, \"root\") || !strcmp(szUserName, \"admin\")){ return 1; } if (NULL != (pUnPrivilege = getpwnam(szUserName))){ if (!strcmp(pUnPrivilege-\u0026gt;pw_shell, \"/bin/sh\") || !strcmp(pUnPrivilege-\u0026gt;pw_shell, \"/bin/ash\")) { return 1; } } return 0; } Basically synology created a heavily customized version of OpenSSH, including a handful of hacks - e.g., additional checking before accepting a login to see if the SSH service is enabled within the web interface, or stripping special chars (;, |, ‘) from rsync commands, and… wait for it… blocking anyone other than root or admin from using any shell other than /bin/sh or /bin/ash.\nOnce identified the cause, the fix was easy: just remove the call to IsAllowShell(). Cross-compile, upload to the NAS, reboot and voilà, regular users can now use bash normally.\nThe hardest part was to get cross-compiling working properly. If there’s anyone interested, here’s my modified version of the Makefile. This was tested with OpenSSH-5.8p1 from DSM4.1 source code, branch 2636, on models with Marvell Kirkwood mv6281/mv6282 CPU (like DS212+), under Ubuntu 12.10 x64.\nBottom line: Synology did exactly what companies should not do: deviate from standards, for no reason. The result is ugly and unmaintainable code, and creates all sorts of headaches for users.\nThankfully there’s GPL to keep them (somewhat) open.\n",
+  "wordCount" : "517",
+  "inLanguage": "en",
+  "image": "https://wrgms.com/images/cover.jpg","datePublished": "2013-01-21T01:36:00Z",
+  "dateModified": "2013-01-21T01:36:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gui Ambros"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wrgms.com/reverse-engineering-synology-openssh/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wrgms.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wrgms.com/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top"> 
