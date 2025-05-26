@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Test-Posts on WarGames</title>
+    <link>https://wrgms.com:443/test-posts/</link>
+    <description>Recent content in Test-Posts on WarGames</description>
+    <image>
+      <title>WarGames</title>
+      <url>https://wrgms.com:443/images/cover.jpg</url>
+      <link>https://wrgms.com:443/images/cover.jpg</link>
+    </image>
+    <generator>Hugo -- 0.147.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 May 2025 20:34:42 -0400</lastBuildDate>
+    <atom:link href="https://wrgms.com:443/test-posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customizing Vscode Themes</title>
+      <link>https://wrgms.com:443/test-posts/customizing-vscode-themes/</link>
+      <pubDate>Sat, 03 May 2025 20:34:42 -0400</pubDate>
+      <guid>https://wrgms.com:443/test-posts/customizing-vscode-themes/</guid>
+      <description>&lt;p&gt;I love the &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=vangware.dark-plus-material&#34;&gt;Dark+ Default Theme&lt;/a&gt; for vscode, but when programming in Python I always thought the class instance references (aka &lt;code&gt;self&lt;/code&gt;) was too bright, which made the core in the class harder to read.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Before:&lt;/strong&gt;
+&lt;img alt=&#34;Dark+ Default Theme, with self in light blue&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2020/08/vscode-before.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;After:&lt;/strong&gt;
+&lt;img alt=&#34;Customizing%20vscode%20themes%&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2020/08/vscode-after.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s pretty easy to &lt;a href=&#34;https://code.visualstudio.com/docs/getstarted/themes&#34;&gt;customize any attribute&lt;/a&gt; in Visual Studio Code — you just need to know which token scope to use. With the cursor over the keyword, use Command Palette (&lt;code&gt;CTRL-SHIFT-P&lt;/code&gt;) and select &amp;ldquo;&lt;code&gt;Developer: Inspect Editor Tokens and Scopes&lt;/code&gt;&amp;rdquo; (&lt;a href=&#34;https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#scope-inspector&#34;&gt;official documentation&lt;/a&gt;).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My Fifth Post</title>
+      <link>https://wrgms.com:443/test-posts/my-fifth-post/</link>
+      <pubDate>Sat, 03 May 2025 20:33:37 -0400</pubDate>
+      <guid>https://wrgms.com:443/test-posts/my-fifth-post/</guid>
+      <description>&lt;p&gt;Write content here&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My Fourth Post</title>
+      <link>https://wrgms.com:443/test-posts/my-fourth-post/</link>
+      <pubDate>Sat, 03 May 2025 20:33:27 -0400</pubDate>
+      <guid>https://wrgms.com:443/test-posts/my-fourth-post/</guid>
+      <description>&lt;p&gt;Write content here&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My Third Post</title>
+      <link>https://wrgms.com:443/test-posts/my-third-post/</link>
+      <pubDate>Sat, 03 May 2025 20:33:22 -0400</pubDate>
+      <guid>https://wrgms.com:443/test-posts/my-third-post/</guid>
+      <description>&lt;p&gt;Write content here&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My First Post</title>
+      <link>https://wrgms.com:443/test-posts/my-first-post/</link>
+      <pubDate>Sat, 03 May 2025 20:33:14 -0400</pubDate>
+      <guid>https://wrgms.com:443/test-posts/my-first-post/</guid>
+      <description>&lt;p&gt;Write content here&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My Second Post</title>
+      <link>https://wrgms.com:443/test-posts/my-second-post/</link>
+      <pubDate>Sat, 03 May 2025 20:31:44 -0400</pubDate>
+      <guid>https://wrgms.com:443/test-posts/my-second-post/</guid>
+      <description>&lt;h1 id=&#34;this-is-my-second-post&#34;&gt;This is my second post&lt;/h1&gt;
+&lt;p&gt;And this is the content&amp;hellip;
+Write content here&amp;hellip;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

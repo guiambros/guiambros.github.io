@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>GTLD on wrgms.com</title>
+    <link>https://wrgms.com/tags/gtld/</link>
+    <description>Recent content in GTLD on wrgms.com</description>
+    <image>
+      <title>wrgms.com</title>
+      <url>https://wrgms.com/images/cover.jpg</url>
+      <link>https://wrgms.com/images/cover.jpg</link>
+    </image>
+    <generator>Hugo -- 0.147.1</generator>
+    <language>en-us</language>
+    <copyright>2025 Gui Ambros</copyright>
+    <lastBuildDate>Sat, 30 Aug 2014 04:59:19 +0000</lastBuildDate>
+    <atom:link href="https://wrgms.com/tags/gtld/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gTLDs and the death of URLs</title>
+      <link>https://wrgms.com/gtlds-and-the-death-of-urls/</link>
+      <pubDate>Sat, 30 Aug 2014 04:59:19 +0000</pubDate>
+      <guid>https://wrgms.com/gtlds-and-the-death-of-urls/</guid>
+      <description>&lt;p&gt;Unless you&amp;rsquo;ve been living under a rock, you&amp;rsquo;ve read &lt;em&gt;ad nauseum&lt;/em&gt; about the overly optimistic predictions for the new gTLDs. Some say it&amp;rsquo;ll the the digital renaissance; others claim it&amp;rsquo;s the  best thing to ever happen to the web, after the browser itself.&lt;/p&gt;
+&lt;p&gt;This video summarizes well the sentiment:&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1.5rem;&#34;&gt;
+  &lt;iframe
+    src=&#34;https://www.youtube.com/embed/1kFcxf8KAjg&#34;
+    frameborder=&#34;0&#34;
+    allowfullscreen
+    loading=&#34;lazy&#34;
+    style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34;
+  &gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is wrong.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on wrgms.com</title>
+    <link>https://wrgms.com/posts/</link>
+    <description>Recent content in Posts on wrgms.com</description>
+    <image>
+      <title>wrgms.com</title>
+      <url>https://wrgms.com/images/cover.jpg</url>
+      <link>https://wrgms.com/images/cover.jpg</link>
+    </image>
+    <generator>Hugo -- 0.147.1</generator>
+    <language>en-us</language>
+    <copyright>2025 Gui Ambros</copyright>
+    <lastBuildDate>Sat, 08 Aug 2020 22:19:29 +0000</lastBuildDate>
+    <atom:link href="https://wrgms.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customizing vscode themes</title>
+      <link>https://wrgms.com/untitledcustomizing-vscode-themes/</link>
+      <pubDate>Sat, 08 Aug 2020 22:19:29 +0000</pubDate>
+      <guid>https://wrgms.com/untitledcustomizing-vscode-themes/</guid>
+      <description>&lt;p&gt;I love the &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=vangware.dark-plus-material&#34;&gt;Dark+ Default Theme&lt;/a&gt; for vscode, but when programming in Python I always thought the class instance references (aka &lt;code&gt;self&lt;/code&gt;) was too bright, which made the core in the class harder to read.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Before:&lt;/strong&gt;
+&lt;img alt=&#34;Dark+ Default Theme, with self in light blue&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2020/08/vscode-before.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;After:&lt;/strong&gt;
+&lt;img alt=&#34;Customizing%20vscode%20themes%&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2020/08/vscode-after.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s pretty easy to &lt;a href=&#34;https://code.visualstudio.com/docs/getstarted/themes&#34;&gt;customize any attribute&lt;/a&gt; in Visual Studio Code — you just need to know which token scope to use. With the cursor over the keyword, use Command Palette (&lt;code&gt;CTRL-SHIFT-P&lt;/code&gt;) and select &amp;ldquo;&lt;code&gt;Developer: Inspect Editor Tokens and Scopes&lt;/code&gt;&amp;rdquo; (&lt;a href=&#34;https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#scope-inspector&#34;&gt;official documentation&lt;/a&gt;).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Disable &#34;Mouse battery low&#34; spam notification on Ubuntu</title>
+      <link>https://wrgms.com/disable-mouse-battery-low-spam-notification/</link>
+      <pubDate>Sun, 02 Jun 2019 23:47:42 +0000</pubDate>
+      <guid>https://wrgms.com/disable-mouse-battery-low-spam-notification/</guid>
+      <description>&lt;p&gt;I use a Logitech Performance MX wireless mouse, on &lt;del&gt;Ubuntu 18.10 (&lt;em&gt;Cosmic Cuttlefish&lt;/em&gt;), with Gnome 3.30.2&lt;/del&gt; Ubuntu 20.04, with Gnome 3.36.2.&lt;/p&gt;
+&lt;p&gt;This mouse uses regular 1.2V AA NiMH rechargeable battery&lt;sup&gt;1&lt;/sup&gt;, which usually lasts 3 months on a single charge&lt;/p&gt;
+&lt;p&gt;The problem is that Ubuntu&amp;rsquo;s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 &lt;em&gt;weeks&lt;/em&gt; before it really runs out.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut</title>
+      <link>https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/</link>
+      <pubDate>Sun, 03 Jun 2018 13:06:51 +0000</pubDate>
+      <guid>https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/</guid>
+      <description>&lt;p&gt;Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (&lt;a href=&#34;https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/&#34;&gt;keyboard&lt;/a&gt;, extensions, application menu, etc), but I&amp;rsquo;m quite happy with everything. Or almost everything.&lt;/p&gt;
+&lt;p&gt;One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>5 years ago, the world lost Aaron Swartz</title>
+      <link>https://wrgms.com/5-years-ago-the-world-lost-aaron-swartz/</link>
+      <pubDate>Fri, 12 Jan 2018 02:48:08 +0000</pubDate>
+      <guid>https://wrgms.com/5-years-ago-the-world-lost-aaron-swartz/</guid>
+      <description>&lt;p&gt;5 years today, the world lost Aaron Swartz.&lt;/p&gt;
+&lt;p&gt;A death motivated by the judicial extremism of our government, and indirectly caused by prosecutors who only cared about &lt;a href=&#34;https://en.wikipedia.org/wiki/United_States_v._Swartz&#34;&gt;advancing their own careers&lt;/a&gt;, at any cost.&lt;/p&gt;
+&lt;p&gt;Aaron was only 26, but already had an &lt;a href=&#34;https://www.thextraordinary.org/aaron-swartz&#34;&gt;extensive list of contributions&lt;/a&gt; to society, internet, freedom of expression, and more. We can only imagine how much more he would have accomplished by now, particularly in the current political environment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The next chapter</title>
+      <link>https://wrgms.com/the-next-chapter/</link>
+      <pubDate>Fri, 07 Aug 2015 06:34:41 +0000</pubDate>
+      <guid>https://wrgms.com/the-next-chapter/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2015/08/google-motto.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Exactly 14 years and 6 months ago to this day, I joined a small and weirdly named company called &lt;em&gt;Impiric&lt;/em&gt; (formerly &lt;a href=&#34;http://www.dmnews.com/agency/update-wunderman-becomes-impiric-they-took-a-legends-name-off-the-door/article/64891/&#34;&gt;Wunderman Cato Johnson&lt;/a&gt;, later &lt;a href=&#34;http://adage.com/article/news/impiric-returns-wunderman/32185/&#34;&gt;renamed back to Wunderman&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;The company was already part of WPP, but it was mostly seen as the direct marketing arm of Y&amp;amp;R. At the time we were doing 1:1 programs via direct mail and the then nascent email/web, plus  building CRM/data/analytics platforms for clients.&lt;/p&gt;
+&lt;p&gt;Over this period we went from a one-dimensional data/direct marketing agency to become the &lt;a href=&#34;http://www.dailyfinance.com/2013/05/03/wunderman-ranks-1-digital-agency-network-in-the-wo/&#34;&gt;#1 digital network worldwide&lt;/a&gt;, with 7,000+ employees over 60 countries, and servicing some of the largest brands in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Flying Cars Are Closer Than You Think</title>
+      <link>https://wrgms.com/flying-cars-are-closer-than-you-think/</link>
+      <pubDate>Sun, 15 Mar 2015 21:15:00 +0000</pubDate>
+      <guid>https://wrgms.com/flying-cars-are-closer-than-you-think/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2015/03/aeromobil.jpg&#34;&gt;
+&lt;small&gt;&lt;em&gt;Juraj Vaculik, from AeroMobil&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;“&lt;em&gt;Mark my word: A combination of an airplane and motorcar is coming. You may smile. But it will come…&lt;/em&gt;”  [Henry Ford, 1940]&lt;/p&gt;
+&lt;p&gt;Flying cars are &lt;a href=&#34;http://www.popsci.com/military-aviation-space/article/2001-12/looking-back-henry-fords-flivver&#34;&gt;not something new&lt;/a&gt;. The idea has been going around since the 19&lt;sup&gt;th&lt;/sup&gt; century, even before the very first flight by Santos-Dumont (or Wright Brothers, depending on your bias). But it was The Jetsons who first brought the concept of flying cars to the masses. We grew up dreaming that one day we&amp;rsquo;d be able to get in our cars and fly straight to our destination - fast, safely, and traffic-free.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Can you believe this is paper?</title>
+      <link>https://wrgms.com/can-you-believe-this-is-paper/</link>
+      <pubDate>Sat, 14 Mar 2015 16:09:23 +0000</pubDate>
+      <guid>https://wrgms.com/can-you-believe-this-is-paper/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1.5rem;&#34;&gt;
+  &lt;iframe
+    src=&#34;https://www.youtube.com/embed/FK5pAoYOW-Y&#34;
+    frameborder=&#34;0&#34;
+    allowfullscreen
+    loading=&#34;lazy&#34;
+    style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34;
+  &gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is a prototype presented by a British startup, &lt;a href=&#34;http://www.novalia.co.uk/&#34;&gt;Novalia&lt;/a&gt; during the McDonald&amp;rsquo;s Startup Pitch session, as a way to re-engage consumers within their restaurants.&lt;/p&gt;
+&lt;p&gt;We played with it for a few minutes, and the experience is pretty amazing. There&amp;rsquo;s no glass, buttons or anything to distract you. Just a set of small batteries on the back, and plain &lt;em&gt;paper&lt;/em&gt; interface.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>&#34;You&#39;d be impoverished to not know the story of video games&#34;</title>
+      <link>https://wrgms.com/youd-be-impoverished-to-not-know-the-story-of-video-games/</link>
+      <pubDate>Fri, 13 Mar 2015 16:04:00 +0000</pubDate>
+      <guid>https://wrgms.com/youd-be-impoverished-to-not-know-the-story-of-video-games/</guid>
+      <description>We&amp;#39;re incredibly lucky to be the very first generation to play videogames. But history moves fast and every day content is lost when services are shut down.</description>
+    </item>
+    <item>
+      <title>Top 10 survival tips for SXSW this year</title>
+      <link>https://wrgms.com/top-10-tips-to-survive-sxsw-this-year/</link>
+      <pubDate>Fri, 13 Mar 2015 15:28:16 +0000</pubDate>
+      <guid>https://wrgms.com/top-10-tips-to-survive-sxsw-this-year/</guid>
+      <description>&lt;p&gt;With SXSW starting today, and with many friends attending for the first time this year, I thought it&amp;rsquo;d be interesting to compile my top 10 tips I learned the hard way over the years.&lt;/p&gt;
+&lt;p&gt;Keep in mind I&amp;rsquo;m looking at this from the perspective of a hacker/maker/developer/digital marketing, so YMMV.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Plan ahead, but not too much.&lt;/strong&gt; With 800+ sessions this year, it&amp;rsquo;s easy to get overwhelmed. But get over your FOMO, and enjoy the serendipity. You &lt;em&gt;will&lt;/em&gt; miss many good sessions, and that&amp;rsquo;s OK. The best talk will be that one you didn&amp;rsquo;t plan, and just entered because your first option was full.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Editing files remotely via SSH on SublimeText 3</title>
+      <link>https://wrgms.com/editing-files-remotely-via-ssh-on-sublimetext-3/</link>
+      <pubDate>Wed, 26 Nov 2014 00:59:58 +0000</pubDate>
+      <guid>https://wrgms.com/editing-files-remotely-via-ssh-on-sublimetext-3/</guid>
+      <description>&lt;p&gt;Sometimes you need to edit a file on a remote server, but using vim/emacs is not very practical, due to lag of screen refresh.&lt;/p&gt;
+&lt;p&gt;TextMate users have the &lt;a href=&#34;https://github.com/textmate/rmate&#34;&gt;classic&lt;/a&gt; &lt;code&gt;rmate&lt;/code&gt;, but it was implemented in Ruby, which may not be available on the remote server.&lt;/p&gt;
+&lt;p&gt;A better option is to use &lt;a href=&#34;https://github.com/aurora/rmate&#34;&gt;this version&lt;/a&gt; of &lt;code&gt;rmate&lt;/code&gt;, implemented in pure Bash. It&amp;rsquo;s a single file, self-contained, and with no external dependencies.&lt;/p&gt;
+&lt;p&gt;Step by step:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Voice Recognition on Embedded Devices - Part 1</title>
+      <link>https://wrgms.com/voice-recognition/</link>
+      <pubDate>Mon, 10 Nov 2014 03:51:43 +0000</pubDate>
+      <guid>https://wrgms.com/voice-recognition/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Must be able to listen continuously&lt;/li&gt;
+&lt;li&gt;Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black)&lt;/li&gt;
+&lt;li&gt;Good accuracy on a limited set of words (English only)&lt;/li&gt;
+&lt;li&gt;Decent performance, particularly on low-power CPUs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;My first thought was to use Google Speech API. The accuracy is great, and it&amp;rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn&amp;rsquo;t satisfy requirement #1. And I don&amp;rsquo;t like the idea of streaming &lt;em&gt;all&lt;/em&gt; of my personal conversations to anyone. It&amp;rsquo;s already enough to have NSA listening to my phone calls&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)</title>
+      <link>https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/</link>
+      <pubDate>Sun, 21 Sep 2014 07:31:11 +0000</pubDate>
+      <guid>https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/</guid>
+      <description>&lt;center&gt;[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/)&lt;/center&gt;
+&lt;p&gt;&lt;em&gt;(note: this post was updated in May 2020 to reflect it works with Ubuntu 20.04 and Gnome 3.36.1. It has also been tested with Ubuntu 18.04 and Gnome 3.28.1. Original title &amp;ldquo;Using .XCompose with Chrome and Sublime Text&amp;rdquo;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you use US International keyboard on Linux (e.g., if you write in Spanish or Brazilian Portuguese), you know the royal pain of having to press space after the compose character (typically &lt;code&gt;&#39;&lt;/code&gt;). Contractions like &lt;em&gt;can&amp;rsquo;t&lt;/em&gt;, &lt;em&gt;won&amp;rsquo;t&lt;/em&gt;, &lt;em&gt;Mary&amp;rsquo;s&lt;/em&gt;, etc are a struggle, as you have to press &lt;code&gt;space&lt;/code&gt; after &lt;code&gt;&#39;&lt;/code&gt;, otherwise you&amp;rsquo;ll get &lt;em&gt;canť&lt;/em&gt;, &lt;em&gt;wonť&lt;/em&gt;, &lt;em&gt;Maryś&lt;/em&gt;, etc.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Apple Keynote on Linux without Safari</title>
+      <link>https://wrgms.com/apple-2014-september-keynote-on-linux/</link>
+      <pubDate>Wed, 10 Sep 2014 01:04:16 +0000</pubDate>
+      <guid>https://wrgms.com/apple-2014-september-keynote-on-linux/</guid>
+      <description>&lt;p align=&#34;center&#34;&gt;
+&lt;p&gt;&lt;img alt=&#34;The new iPhone 6 announced today during Apple&amp;rsquo;s keynote&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Sep/iphone6tb.png&#34;&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;So you just got home, thirsty to watch today&amp;rsquo;s keynote without the streaming issues of this morning, but you use Linux and hate safari?&lt;/p&gt;
+&lt;p&gt;Fear not, here&amp;rsquo;s how to watch it using VLC:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;vlc --ffmpeg-threads&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;http://p.events-delivery.apple.com.edgesuite.net/14pijnadfpvkjnfvpijhabdfvpijbadfv09/m3u8/sl_vod_mvp.m3u8&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;p&gt;Thanks Chan-Ho Suh on &lt;a href=&#34;http://askubuntu.com/questions/206824/how-to-watch-apple-keynote-videos-from-the-website&#34;&gt;AskUbuntu@StackExchange&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>gTLDs and the death of URLs</title>
+      <link>https://wrgms.com/gtlds-and-the-death-of-urls/</link>
+      <pubDate>Sat, 30 Aug 2014 04:59:19 +0000</pubDate>
+      <guid>https://wrgms.com/gtlds-and-the-death-of-urls/</guid>
+      <description>&lt;p&gt;Unless you&amp;rsquo;ve been living under a rock, you&amp;rsquo;ve read &lt;em&gt;ad nauseum&lt;/em&gt; about the overly optimistic predictions for the new gTLDs. Some say it&amp;rsquo;ll the the digital renaissance; others claim it&amp;rsquo;s the  best thing to ever happen to the web, after the browser itself.&lt;/p&gt;
+&lt;p&gt;This video summarizes well the sentiment:&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1.5rem;&#34;&gt;
+  &lt;iframe
+    src=&#34;https://www.youtube.com/embed/1kFcxf8KAjg&#34;
+    frameborder=&#34;0&#34;
+    allowfullscreen
+    loading=&#34;lazy&#34;
+    style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34;
+  &gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is wrong.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Eyeo Festival 2014</title>
+      <link>https://wrgms.com/eyeo-festival-2014/</link>
+      <pubDate>Mon, 30 Jun 2014 05:25:34 +0000</pubDate>
+      <guid>https://wrgms.com/eyeo-festival-2014/</guid>
+      <description>&lt;p&gt;Last month I went to the excellent Eyeo Festival, in Minneapolis. I&amp;rsquo;m still digesting the content, and some ideas are still ricocheting inside my head. I&amp;rsquo;ll write a post soon.&lt;/p&gt;
+
+      &lt;div
+          style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+        &lt;iframe
+          src=&#34;https://player.vimeo.com/video/98457855?dnt=0&#34;
+            style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allow=&#34;fullscreen&#34;&gt;
+        &lt;/iframe&gt;
+      &lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>SXSW Startup Accelerator</title>
+      <link>https://wrgms.com/sxsw-startup-accelerator-social-technology-finalists/</link>
+      <pubDate>Sun, 09 Mar 2014 23:48:54 +0000</pubDate>
+      <guid>https://wrgms.com/sxsw-startup-accelerator-social-technology-finalists/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;&lt;i&gt;Ryan Allis demo&amp;rsquo;ing Connect app during SXSW Accelerator&lt;/i&gt;&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Mar/accelerator_cropped_small.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This is the 6&lt;sup&gt;th&lt;/sup&gt; year of &lt;a href=&#34;http://www.sxsw.com/interactive/accelerator&#34;&gt;SXSW Accelerator&lt;/a&gt;. The event has seen a long list of startups over the years, including Sifteo, Hipmunk, Foodspooting, and Siri (yeah, the one acquired by the fruit company).&lt;/p&gt;
+&lt;p&gt;Past startups raised more than $600 million in VC funding, which means that being a finalist here is a good indicator of market potential.&lt;/p&gt;
+&lt;p&gt;I just watched the three finalists in the Social Technologies category. This includes technologies that enable personal connections, and how we share our lives with others. All three have nice products, worth checking out. Here&amp;rsquo;s the list:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Patreon - A subscription-based, kickstarter-like for artists</title>
+      <link>https://wrgms.com/patreon-a-subscription-based-kickstarter-like-for/</link>
+      <pubDate>Thu, 09 May 2013 02:59:00 +0000</pubDate>
+      <guid>https://wrgms.com/patreon-a-subscription-based-kickstarter-like-for/</guid>
+      <description>&lt;p&gt;You have to check out &lt;a href=&#34;http://www.patreon.com/jackconte&#34;&gt;Patreon&lt;/a&gt;. Do it now. I&amp;rsquo;ll wait.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s such a simple and clever concept. It gets the best of Kickstarter, but eliminates the burden of creating a project.&lt;/p&gt;
+&lt;p&gt;Kickstarter works well for large and well defined projects - a game, a movie, a new gadget. But it doesn&amp;rsquo;t work for small, frequent, content-based efforts. This includes the work done by musicians, writers, photographers, bloggers, youtubers, and artists in general.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Enabling Google Now on Google Apps for Business</title>
+      <link>https://wrgms.com/how-to-enable-google-now-for-ios-devices-iphone-ipad/</link>
+      <pubDate>Thu, 02 May 2013 05:26:08 +0000</pubDate>
+      <guid>https://wrgms.com/how-to-enable-google-now-for-ios-devices-iphone-ipad/</guid>
+      <description>&lt;p&gt;Google Now is finally available for iOS since earlier this week. But for those using Google Apps for Business will receive an annoying &lt;em&gt;&amp;ldquo;your administrator hasn&amp;rsquo;t enabled Google Now for your domain&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Fear not, the solution is easy. You just have to enable Google Now, which is buried under &lt;em&gt;Setting&lt;/em&gt; / &lt;em&gt;Mobile&lt;/em&gt; / &lt;em&gt;Android Setting&lt;/em&gt; / &lt;em&gt;Enable Google Now&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;For detailed instructions, check &lt;a href=&#34;http://www.hanselman.com/blog/HowToEnableGoogleNowForIOSDevicesIPhoneIPadWithGoogleAppsForBusinessAccounts.aspx&#34;&gt;Scott Hanselman&amp;rsquo;s tutorial&lt;/a&gt;, which has fancy pictures and all the details.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>TarenSK: Why Aaron died</title>
+      <link>https://wrgms.com/tarensk-why-aaron-died/</link>
+      <pubDate>Mon, 04 Feb 2013 23:07:24 +0000</pubDate>
+      <guid>https://wrgms.com/tarensk-why-aaron-died/</guid>
+      <description>&lt;p&gt;A month later, and this still hurts.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Last week, I awoke to find Aaron with me. He was sitting next to my bed, grinning his cheekiest grin, holding my hand.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;For a few minutes, I savored a sweet uncertainty: Were the last few weeks all a nightmare, and Aaron was still with me? Or was I awaking inside a dream state, and in the real…&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;continue reading: &lt;em&gt;&lt;a href=&#34;http://tarensk.tumblr.com/post/42260548767/why-aaron-died&#34;&gt;TarenSK: Why Aaron died&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Entering Single User Mode On A Synology</title>
+      <link>https://wrgms.com/entering-single-user-mode-on-a-synology/</link>
+      <pubDate>Sat, 26 Jan 2013 03:40:00 +0000</pubDate>
+      <guid>https://wrgms.com/entering-single-user-mode-on-a-synology/</guid>
+      <description>&lt;p&gt;I hope this will be my last post about Synology for a while.&lt;/p&gt;
+&lt;p&gt;After dealing for a few weeks with an &lt;a href=&#34;http://forum.synology.com/enu/viewtopic.php?f=221&amp;amp;t=59808&amp;amp;start=45#p232455&#34;&gt;unstable environment&lt;/a&gt;, then &lt;a href=&#34;https://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial&#34;&gt;hacking a serial console&lt;/a&gt; to troubleshoot, then &lt;a href=&#34;https://wrgms.com/synologys-secret-telnet-password/&#34;&gt;cracking the secret recovery telnet password&lt;/a&gt; just for fun, and finally solving the &lt;a href=&#34;http://serverfault.com/questions/458553/cant-log-in-via-ssh-to-any-accounts-set-to-use-bin-bash-as-a-default-shell/&#34;&gt;weird mistery&lt;/a&gt; of SSH &lt;a href=&#34;https://wrgms.com/reverse-engineering-synology-openssh&#34;&gt;not accepting /bin/bash as default shell&lt;/a&gt;, I thought I finally had a stable environment. Wrong.&lt;/p&gt;
+&lt;p&gt;But this time I was the one to blame.&lt;/p&gt;
+&lt;p&gt;After solving the conflict with bash, I changed &lt;code&gt;/etc/passwd&lt;/code&gt; user shell to &lt;code&gt;/bin/bash&lt;/code&gt;. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Reverse Engineering Synology&#39;s OpenSSH</title>
+      <link>https://wrgms.com/reverse-engineering-synology-openssh/</link>
+      <pubDate>Mon, 21 Jan 2013 01:36:00 +0000</pubDate>
+      <guid>https://wrgms.com/reverse-engineering-synology-openssh/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Chasing Synology&amp;rsquo;s OpenSSH bugs&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/synology_openssh.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Trying to use a non-standard shell in your Synology DS212+ NAS may be an exercise of frustration.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m a bash-lover, and have a bunch of scripts to automate backups, so I wanted to set up default shell to /bin/bash.&lt;/p&gt;
+&lt;p&gt;It worked well with root, but when a regular user tries to log in, the connection is terminated with &lt;em&gt;&amp;ldquo;Permission denied, please try again.&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Weird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also not. I even tried compiling bash from source (which took me a full day, just to get ARM GCC to cross compile properly). Nada.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lessig Blog, v2: Prosecutor as bully</title>
+      <link>https://wrgms.com/lessig-blog-v2-prosecutor-as-bully/</link>
+      <pubDate>Sun, 13 Jan 2013 00:20:00 +0000</pubDate>
+      <guid>https://wrgms.com/lessig-blog-v2-prosecutor-as-bully/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;img alt=&#34;Boston Wiki Meetup&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/aaron.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(Some will say this is not the time. I disagree. This is the time when&lt;/em&gt;
+&lt;em&gt;every mixed emotion needs to find voice.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Since his arrest in January, 2011, I have known more about the events&lt;/em&gt;
+&lt;em&gt;that began this spiral than I have wanted to know. Aaron consulted me&lt;/em&gt;
+&lt;em&gt;as a friend and lawyer. He…&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Continue reading: &lt;em&gt;&lt;a href=&#34;http://lessig.tumblr.com/post/40347463044/prosecutor-as-bully&#34;&gt;Lessig Blog, v2: Prosecutor as Bully&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;&lt;em&gt;Photo credit: Boston Wiki Meetup, by ragesoss on &lt;a href=&#34;http://www.flickr.com/photos/ragesoss/3835494997/&#34;&gt;Flickr&lt;/a&gt;&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Synology&#39;s &#34;secret&#34; telnet password</title>
+      <link>https://wrgms.com/synologys-secret-telnet-password/</link>
+      <pubDate>Sat, 08 Dec 2012 21:28:00 +0000</pubDate>
+      <guid>https://wrgms.com/synologys-secret-telnet-password/</guid>
+      <description>&lt;p&gt;If you have a Synology NAS and had some sort of disk crash in the past, you&amp;rsquo;ve probably encountered the famous &lt;em&gt;&amp;ldquo;Cannot format system partition&amp;rdquo;&lt;/em&gt; and &lt;em&gt;&amp;ldquo;Please configure your router to forward port 23 to DiskStation and contact Synology online support&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Yeah, it sucks.&lt;/p&gt;
+&lt;p&gt;It sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don&amp;rsquo;t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Recovering a Failed Synology Diskstation with a Serial Console</title>
+      <link>https://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial/</link>
+      <pubDate>Sun, 02 Dec 2012 06:57:00 +0000</pubDate>
+      <guid>https://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Synology Serial Console&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/synology_hacking.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I thought I&amp;rsquo;d post this here for anyone looking for help on troubleshooting a failed Synology Diskstation NAS.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been a happy user of a Synology DS-212+. The software is robust and much better than my old DroboFS, and the fact that it is entirely open source is a big plus.&lt;/p&gt;
+&lt;p&gt;I recently upgraded the firmware to &lt;a href=&#34;http://www.synology.com/releaseNote_enu/DS212+.php&#34;&gt;DSM 2661&lt;/a&gt;. Everything worked fine. For 12 hours. The next morning, the device was dead, with the &lt;em&gt;blue blink of death&lt;/em&gt;).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Glitch is closing. Here&#39;s why.</title>
+      <link>https://wrgms.com/glitch/</link>
+      <pubDate>Fri, 16 Nov 2012 06:13:00 +0000</pubDate>
+      <guid>https://wrgms.com/glitch/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.glitch.com/&#34;&gt;Glitch&lt;/a&gt;, the beautiful massive multiplayer game with a pixel-perfect design, announced that they&amp;rsquo;ll be closing doors soon. It&amp;rsquo;s sad to see so much work and love going nowhere. At least they were classy and wrote a &lt;a href=&#34;https://web.archive.org/web/20121225025042/www.glitch.com/closing/&#34;&gt;candid and honest shutting-down post&lt;/a&gt;, and they&amp;rsquo;re even refunding users (!). That&amp;rsquo;s a level of integrity that you don&amp;rsquo;t see everyday in the startup world.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve never played Glitch, it&amp;rsquo;s now too late. The game world is now restricted to existing users, and everything will shut down on December 9th 2012. Here&amp;rsquo;s &lt;a href=&#34;https://www.youtube.com/watch?v=HzclVdVBQDQ&#34;&gt;some&lt;/a&gt; &lt;a href=&#34;https://www.youtube.com/watch?v=OSOfOeJpSb8&#34;&gt;videos&lt;/a&gt; to give you an idea of what you missed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FileZilla configuration across multiple computers</title>
+      <link>https://wrgms.com/sharing-filezilla-configuration-across-multiple/</link>
+      <pubDate>Mon, 12 Nov 2012 04:37:00 +0000</pubDate>
+      <guid>https://wrgms.com/sharing-filezilla-configuration-across-multiple/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://filezilla-project.org/&#34;&gt;FileZilla&lt;/a&gt; is great, but the default configuration is to save all configuration files &amp;amp; sites to local folders.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s an elegant solution to change the default directory. Just copy &lt;em&gt;fzdefaults.xml.example&lt;/em&gt; from &lt;code&gt;[FileZilla&#39;s install dir]/docs&lt;/code&gt; and place it in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Linux/BSD:&lt;/strong&gt;  &lt;code&gt;~/.filezilla&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mac OSX:&lt;/strong&gt; &lt;code&gt;Contents/SharedSupport/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Windows:&lt;/strong&gt;  put in same directory as &lt;code&gt;filezilla.exe&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alternatively you can also point to a shared folder on Dropbox, and share your config and sites across multiple computers. Just make sure you have a strong password on Dropbox, for obvious reasons.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Machine Learning @ Coursera</title>
+      <link>https://wrgms.com/just-finished-courseras-machine-learning-class/</link>
+      <pubDate>Mon, 05 Nov 2012 05:39:00 +0000</pubDate>
+      <guid>https://wrgms.com/just-finished-courseras-machine-learning-class/</guid>
+      <description>&lt;p&gt;I just finished Coursera&amp;rsquo;s &lt;a href=&#34;https://class.coursera.org/ml-2012-002/class/index&#34;&gt;Machine Learning class&lt;/a&gt;. I did OK the first time, but wasn&amp;rsquo;t sure about some concepts, so decided to do it again. It was much &lt;a href=&#34;http://imgur.com/a/dcUxp&#34;&gt;easier&lt;/a&gt; the second time.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re interested in machine learning and collective intelligence, this is a great course. I can&amp;rsquo;t post the code, but would be glad to help if you have any questions. &lt;a href=&#34;http://ai.stanford.edu/~ang/&#34;&gt;Prof. Andrew Ng&lt;/a&gt; did an awesome job, and it&amp;rsquo;s great to see his success with &lt;a href=&#34;http://www.coursera.com&#34;&gt;Coursera&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Syncing Sublime Text 2 Settings via Dropbox</title>
+      <link>https://wrgms.com/syncing-sublime-text-2-settings-via-dropbox/</link>
+      <pubDate>Sun, 28 Oct 2012 01:15:00 +0000</pubDate>
+      <guid>https://wrgms.com/syncing-sublime-text-2-settings-via-dropbox/</guid>
+      <description>&lt;p&gt;I migrated to &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text 2&lt;/a&gt; a while ago, and not looking back. It&amp;rsquo;s by far the &lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/?search_index=7&#34;&gt;best&lt;/a&gt; &lt;a href=&#34;http://www.1stwebdesigner.com/design/sublime-text-code-editor-review/&#34;&gt;editor&lt;/a&gt; I&amp;rsquo;ve ever &lt;a href=&#34;https://twitter.com/GuiAmbros/status/196757517072732160&#34;&gt;used&lt;/a&gt;. Its &lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/essential-sublime-text-2-plugins-and-extensions/?search_index=4&#34;&gt;packaging system&lt;/a&gt; is simple and efficient. But one thing that annoys me is the lack of synchronization across different computers.&lt;/p&gt;
+&lt;p&gt;Not anymore.&lt;/p&gt;
+&lt;p&gt;The solution is rather simple. You can just move three directories &amp;ndash; &lt;code&gt;Packages&lt;/code&gt;, &lt;code&gt;Installed Packages&lt;/code&gt;, &lt;code&gt;Pristine Packages&lt;/code&gt; &amp;ndash; to your Dropbox, create a symbolic link for each directory (&lt;code&gt;ln&lt;/code&gt; on Linux/OSX, &lt;code&gt;mklink /d&lt;/code&gt; on Windows), and your packages will always be perfectly in sync across multiple computers - even using different platforms.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Fix ALL CAPS MENUS on Visual Studio 2012</title>
+      <link>https://wrgms.com/tired-of-all-caps-menus-on-visual-studio-2012/</link>
+      <pubDate>Sat, 20 Oct 2012 04:23:00 +0000</pubDate>
+      <guid>https://wrgms.com/tired-of-all-caps-menus-on-visual-studio-2012/</guid>
+      <description>&lt;p&gt;So you just installed Visual Studio 2012 and the first thing you notice is that Microsoft now has ALL CAPS MENUS everywhere!&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Visual Studio - ALL CAPS menus&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/visualstudiocaps.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Well, not sure about you, but I want my ProperCase menus back. Luckily there&amp;rsquo;s an easy solution (for now):&lt;/p&gt;
+&lt;p&gt;Hit &lt;code&gt;Win&lt;/code&gt; + &lt;code&gt;R&lt;/code&gt; and enter:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re running &lt;em&gt;Visual Studio Express 2012 for Windows Desktop&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;REG ADD HKEY_CURRENT_USER\Software\Microsoft\WDExpress\11.0\General /v SuppressUppercaseConversion /d 1 /t REG_DWORD
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re running &lt;em&gt;Visual Studio 2012&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;REG ADD HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\11.0\General /v SuppressUppercaseConversion /d 1 /t REG_DWORD
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re running &lt;em&gt;Visual Studio Express 2012 for Web&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;REG ADD HKEY_CURRENT_USER\Software\Microsoft\VWDExpress\11.0\General /v SuppressUppercaseConversion /d 1 /t REG_DWORD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Voilà! Of course you can also use RegEdit.exe, if you prefer to adjust manually. Just navigate to the registry key above and add a DWORD for &lt;code&gt;SupressUppercaseConversion&lt;/code&gt;, with value 1.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>EW-7811Un wireless adapter on Raspberry Pi</title>
+      <link>https://wrgms.com/ew-7811un-wireless-adapter-on-raspberry-pi/</link>
+      <pubDate>Sun, 16 Sep 2012 19:24:00 +0000</pubDate>
+      <guid>https://wrgms.com/ew-7811un-wireless-adapter-on-raspberry-pi/</guid>
+      <description>&lt;p&gt;After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27+, my wireless adapter EW-7811Un stopped working.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the fix:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;su - root
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir ~/drivers
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd ~/drivers
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget http://dl.dropbox.com/u/80256631/8192cu-latest.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar zxvf 8192cu-latest.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd 8192cu-latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;install -p -m &lt;span style=&#34;color:#ae81ff&#34;&gt;644&lt;/span&gt; 8192cu.ko /lib/modules/3.2.27+/kernel/drivers/net/wireless
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;depmod -a
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;lt;&amp;lt;EOF &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;blacklist rtl8192cu
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;lt;&amp;lt;EOF &amp;gt;&amp;gt; /etc/modules
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;8192cu
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;shutdown -r now
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;p&gt;After reboot you should have wlan0. You may need to configure your wireless network if you didn&amp;rsquo;t so already, by editing /etc/network/interface. Recommended that you use wpa_passphrase to generate your encrypted wifi password:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>We Are Legion. We do not forgive. We do not forget. Expect us.</title>
+      <link>https://wrgms.com/anonymous/</link>
+      <pubDate>Tue, 13 Mar 2012 15:37:00 +0000</pubDate>
+      <guid>https://wrgms.com/anonymous/</guid>
+      <description>&lt;center&gt;
+&lt;p&gt;&lt;img alt=&#34;We do not forgive. We do not forget. Expect us.&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/wearelegion.jpg&#34;&gt;&lt;/p&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;a href=&#34;http://memegenerator.net/instance/9894424&#34;&gt;Lolcats&lt;/a&gt;. &lt;a href=&#34;http://laughingsquid.com/anonymous-vs-church-of-scientology/&#34;&gt;The Church of Scientology&lt;/a&gt;. &lt;a href=&#34;http://www.rferl.org/content/did_anonymous_hack_sonys_playstation_/16795694.html&#34;&gt;Sony&lt;/a&gt;. &lt;a href=&#34;http://arstechnica.com/tech-policy/news/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack.ars&#34;&gt;HBGary Hack&lt;/a&gt;. FBI. Paypal, Visa &amp;amp; MasterCard. Mubarak. Occupy Wall Street. &lt;a href=&#34;http://paidcontent.org/article/419-over-9000-hackers-join-anonymous-ddos-sopamegaupload-protest/&#34;&gt;SOPA/PIPA&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Anonymous has been busy for the past few years. It started as juvenile pranks on 4chan&amp;rsquo;s boards, but grew and became a powerful mechanism against oppressive governments and unscrupulous corporations.&lt;/p&gt;
+&lt;p&gt;Its trajectory was beautifully captured in the documentary &lt;a href=&#34;http://wearelegionthedocumentary.com/&#34;&gt;&amp;ldquo;We Are Legion: The Story of the Hacktivists&amp;rdquo;&lt;/a&gt;, that will be released later this year. I had the pleasure to watch the premiere in Austin during SXSW, and I must say - it&amp;rsquo;s f..ing brilliant. The movie is still in post-production, so the theatrical release may be slightly different.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SXSW - The war of Location-based Social Discovery apps</title>
+      <link>https://wrgms.com/glancee/</link>
+      <pubDate>Tue, 13 Mar 2012 14:21:00 +0000</pubDate>
+      <guid>https://wrgms.com/glancee/</guid>
+      <description>&lt;center&gt;
+&lt;p&gt;&lt;img alt=&#34;Glancee at SXSW&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/glancee.jpg&#34;&gt;&lt;/p&gt;
+&lt;/center&gt;
+&lt;p&gt;My last session of SXSW Day 2 was with &lt;a href=&#34;http://andreavaccari.com/&#34;&gt;Andrea Vaccari&lt;/a&gt;, the CEO of the trendy location-based discovery startup &lt;a href=&#34;http://www.glancee.com/&#34;&gt;Glancee&lt;/a&gt;. If you&amp;rsquo;re not one of the 12,000 people already using the service (that&amp;rsquo;s the number Andrea gave during the talk), well&amp;hellip; you should give it a try, because &lt;a href=&#34;http://techcrunch.com/2012/03/03/myhighlight/&#34;&gt;everyone&lt;/a&gt;  &lt;a href=&#34;https://plus.google.com/111091089527727420853/posts/A4a7qJuV7XE&#34;&gt;is&lt;/a&gt;  &lt;a href=&#34;https://twitter.com/#!/chrismessina/statuses/176422733985492993&#34;&gt;talking&lt;/a&gt;  &lt;a href=&#34;http://www.geekwire.com/2012/dispatch-sxsw-highlight-ambient-awareness-trend&#34;&gt;about&lt;/a&gt;  &lt;a href=&#34;http://news.cnet.com/8301-13772_3-57394743-52/highlight-vs-glancee-at-sxsw-rolling-with-the-serendipity/&#34;&gt;it&lt;/a&gt;. Yeah, I live in the echo chamber, I know.&lt;/p&gt;
+&lt;p&gt;Glancee, like its competitors &lt;a href=&#34;http://blog.highlig.ht/post/16391451858/introducing-highlight&#34;&gt;Highlight&lt;/a&gt;, &lt;a href=&#34;http://www.sonar.me/&#34;&gt;Sonar&lt;/a&gt;, &lt;a href=&#34;http://ban.jo/&#34;&gt;Banjo&lt;/a&gt;, are all exploring the new niche of &lt;em&gt;location social discovery&lt;/em&gt; - some sort of Match.com-meets-LinkedIn. Unproven territory, but sounds promising (albeit somewhat dystopian) to me.
+ &lt;br&gt;
+Andrea spoke about the current status of social discovery apps and the different approaches taken by each player. He also mentioned the incredible growth (hard to see 12,000 as &lt;em&gt;incredible&lt;/em&gt;, but startup founders have to drink their own Kool-Aid), particularly with all the buzz around SXSW.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SXSW - Google Project Re:brief</title>
+      <link>https://wrgms.com/rebrief/</link>
+      <pubDate>Tue, 13 Mar 2012 12:23:00 +0000</pubDate>
+      <guid>https://wrgms.com/rebrief/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Feb/google_rebrief-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Over the past years Google has been trying to go beyond search, diversifying their revenue sources. But despite recent progress with Content Network and YouTube, the marketing community still see the search giant as a way to drive conversion at the bottom of the funnel. In order to move to the next level, Google has to prove they can create emotional connections with consumers.&lt;/p&gt;
+&lt;p&gt;Enter &lt;a href=&#34;http://www.projectrebrief.com/&#34;&gt;&lt;em&gt;Project Re:Brief&lt;/em&gt;&lt;/a&gt;, just announced during SXSW.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>hello world</title>
+      <link>https://wrgms.com/whenitallbegan/</link>
+      <pubDate>Mon, 20 Sep 2004 18:45:00 +0000</pubDate>
+      <guid>https://wrgms.com/whenitallbegan/</guid>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;say_hi&lt;/span&gt;():
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;p&gt;Here&amp;rsquo;s (one of) &lt;a href=&#34;https://web.archive.org/web/20090429233047/http://www.ambros.com.br/blogs/geekorama/&#34;&gt;my oldest blog archives&lt;/a&gt; (note: mostly pt-br). Gosh, it looks like a time capsule :)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

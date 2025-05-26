@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | wrgms.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - wrgms.com">
+<meta name="author" content="">
+<link rel="canonical" href="https://wrgms.com/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.67171b120c51fb25f1a2b5f4a8eac05f924715aabe8693ed6ee8d17ce2425279.css" integrity="sha256-ZxcbEgxR&#43;yXxorX0qOrAX5JHFaq&#43;hpPtbujRfOJCUnk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://wrgms.com/posts/index.xml">
+<link rel="alternate" hreflang="en" href="https://wrgms.com/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top"> 
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com/" accesskey="h" title="wrgms.com (Alt + H)">wrgms.com</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Voice Recognition on Embedded Devices - Part 1
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I’m currently working to add voice recognition to some of my embedded projects. The requirements are:
+Must be able to listen continuously Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black) Good accuracy on a limited set of words (English only) Decent performance, particularly on low-power CPUs My first thought was to use Google Speech API. The accuracy is great, and it’s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn’t satisfy requirement #1. And I don’t like the idea of streaming all of my personal conversations to anyone. It’s already enough to have NSA listening to my phone calls…
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2014-11-10 03:51:43 +0000 UTC' style='color: var(--post-date-color);'>November 10, 2014</span></footer>
+  <a class="entry-link" aria-label="post link to Voice Recognition on Embedded Devices - Part 1" href="https://wrgms.com/voice-recognition/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>[![Wisdom of the Ancients](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)](http://xkcd.com/979/) (note: this post was updated in May 2020 to reflect it works with Ubuntu 20.04 and Gnome 3.36.1. It has also been tested with Ubuntu 18.04 and Gnome 3.28.1. Original title “Using .XCompose with Chrome and Sublime Text”)
+If you use US International keyboard on Linux (e.g., if you write in Spanish or Brazilian Portuguese), you know the royal pain of having to press space after the compose character (typically &#39;). Contractions like can’t, won’t, Mary’s, etc are a struggle, as you have to press space after &#39;, otherwise you’ll get canť, wonť, Maryś, etc.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2014-09-21 07:31:11 +0000 UTC' style='color: var(--post-date-color);'>September 21, 2014</span></footer>
+  <a class="entry-link" aria-label="post link to Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)" href="https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Apple Keynote on Linux without Safari
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> So you just got home, thirsty to watch today’s keynote without the streaming issues of this morning, but you use Linux and hate safari?
+Fear not, here’s how to watch it using VLC:
+vlc --ffmpeg-threads=1 &#39;http://p.events-delivery.apple.com.edgesuite.net/14pijnadfpvkjnfvpijhabdfvpijbadfv09/m3u8/sl_vod_mvp.m3u8&#39; Thanks Chan-Ho Suh on AskUbuntu@StackExchange.
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2014-09-10 01:04:16 +0000 UTC' style='color: var(--post-date-color);'>September 10, 2014</span></footer>
+  <a class="entry-link" aria-label="post link to Apple Keynote on Linux without Safari" href="https://wrgms.com/apple-2014-september-keynote-on-linux/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">gTLDs and the death of URLs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Unless you’ve been living under a rock, you’ve read ad nauseum about the overly optimistic predictions for the new gTLDs. Some say it’ll the the digital renaissance; others claim it’s the best thing to ever happen to the web, after the browser itself.
+This video summarizes well the sentiment:
+This is wrong.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2014-08-30 04:59:19 +0000 UTC' style='color: var(--post-date-color);'>August 30, 2014</span></footer>
+  <a class="entry-link" aria-label="post link to gTLDs and the death of URLs" href="https://wrgms.com/gtlds-and-the-death-of-urls/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Eyeo Festival 2014
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Last month I went to the excellent Eyeo Festival, in Minneapolis. I’m still digesting the content, and some ideas are still ricocheting inside my head. I’ll write a post soon.
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2014-06-30 05:25:34 +0000 UTC' style='color: var(--post-date-color);'>June 30, 2014</span></footer>
+  <a class="entry-link" aria-label="post link to Eyeo Festival 2014" href="https://wrgms.com/eyeo-festival-2014/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SXSW Startup Accelerator
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+This is the 6th year of SXSW Accelerator. The event has seen a long list of startups over the years, including Sifteo, Hipmunk, Foodspooting, and Siri (yeah, the one acquired by the fruit company).
+Past startups raised more than $600 million in VC funding, which means that being a finalist here is a good indicator of market potential.
+I just watched the three finalists in the Social Technologies category. This includes technologies that enable personal connections, and how we share our lives with others. All three have nice products, worth checking out. Here’s the list:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2014-03-09 23:48:54 +0000 UTC' style='color: var(--post-date-color);'>March 9, 2014</span></footer>
+  <a class="entry-link" aria-label="post link to SXSW Startup Accelerator" href="https://wrgms.com/sxsw-startup-accelerator-social-technology-finalists/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Patreon - A subscription-based, kickstarter-like for artists
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>You have to check out Patreon. Do it now. I’ll wait.
+It’s such a simple and clever concept. It gets the best of Kickstarter, but eliminates the burden of creating a project.
+Kickstarter works well for large and well defined projects - a game, a movie, a new gadget. But it doesn’t work for small, frequent, content-based efforts. This includes the work done by musicians, writers, photographers, bloggers, youtubers, and artists in general.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2013-05-09 02:59:00 +0000 UTC' style='color: var(--post-date-color);'>May 9, 2013</span></footer>
+  <a class="entry-link" aria-label="post link to Patreon - A subscription-based, kickstarter-like for artists" href="https://wrgms.com/patreon-a-subscription-based-kickstarter-like-for/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Enabling Google Now on Google Apps for Business
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Google Now is finally available for iOS since earlier this week. But for those using Google Apps for Business will receive an annoying “your administrator hasn’t enabled Google Now for your domain”.
+Fear not, the solution is easy. You just have to enable Google Now, which is buried under Setting / Mobile / Android Setting / Enable Google Now.
+For detailed instructions, check Scott Hanselman’s tutorial, which has fancy pictures and all the details.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2013-05-02 05:26:08 +0000 UTC' style='color: var(--post-date-color);'>May 2, 2013</span></footer>
+  <a class="entry-link" aria-label="post link to Enabling Google Now on Google Apps for Business" href="https://wrgms.com/how-to-enable-google-now-for-ios-devices-iphone-ipad/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">TarenSK: Why Aaron died
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>A month later, and this still hurts.
+Last week, I awoke to find Aaron with me. He was sitting next to my bed, grinning his cheekiest grin, holding my hand.
+For a few minutes, I savored a sweet uncertainty: Were the last few weeks all a nightmare, and Aaron was still with me? Or was I awaking inside a dream state, and in the real…
+continue reading: TarenSK: Why Aaron died
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2013-02-04 23:07:24 +0000 UTC' style='color: var(--post-date-color);'>February 4, 2013</span></footer>
+  <a class="entry-link" aria-label="post link to TarenSK: Why Aaron died" href="https://wrgms.com/tarensk-why-aaron-died/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Entering Single User Mode On A Synology
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I hope this will be my last post about Synology for a while.
+After dealing for a few weeks with an unstable environment, then hacking a serial console to troubleshoot, then cracking the secret recovery telnet password just for fun, and finally solving the weird mistery of SSH not accepting /bin/bash as default shell, I thought I finally had a stable environment. Wrong.
+But this time I was the one to blame.
+After solving the conflict with bash, I changed /etc/passwd user shell to /bin/bash. The only problem is that Synology wipes the system partition during firmware upgrades, so when I upgraded to DSM 4.1.2668, my custom `/bin/bash``was gone. Of course this locked me out of the system. No SSH, SCP or FTP. Great.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2013-01-26 03:40:00 +0000 UTC' style='color: var(--post-date-color);'>January 26, 2013</span></footer>
+  <a class="entry-link" aria-label="post link to Entering Single User Mode On A Synology" href="https://wrgms.com/entering-single-user-mode-on-a-synology/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://wrgms.com/posts/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://wrgms.com/posts/page/3/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>© 2025 <a href='/about'>Gui Ambros</a></span> · 
+        Built with 🖤 using <a href='https://gohugo.io/' rel='noopener noreferrer' target='_blank'>Hugo</a> + <a href='https://github.com/adityatelange/hugo-PaperMod/' rel='noopener' target='_blank'>PaperMod</a> · 
+
+    
+            <a href='/index.xml'>rss</a>
+
+    
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

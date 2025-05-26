@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut | wrgms.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.
+I&rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (keyboard, extensions, application menu, etc), but I&rsquo;m quite happy with everything. Or almost everything.
+One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.67171b120c51fb25f1a2b5f4a8eac05f924715aabe8693ed6ee8d17ce2425279.css" integrity="sha256-ZxcbEgxR&#43;yXxorX0qOrAX5JHFaq&#43;hpPtbujRfOJCUnk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"> 
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com/" accesskey="h" title="wrgms.com (Alt + H)">wrgms.com</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut
+    </h1>
+    <div class="post-meta"><span title='2018-06-03 13:06:51 +0000 UTC' style='color: var(--post-date-color);'>June 3, 2018</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.</p>
+<p>I&rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (<a href="https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/">keyboard</a>, extensions, application menu, etc), but I&rsquo;m quite happy with everything. Or almost everything.</p>
+<p>One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have dozens of shotcuts - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.</p>
+<p>One of my handy shortcuts is <code>&lt;Super&gt;+&lt;F1&gt;</code> to open an xterm with superuser, and <code>&lt;Super&gt;+&lt;F2&gt;</code> for regular user. I use custom xterm profiles, so I can easily check if I&rsquo;m running under a privileged context by looking at the color of the window.</p>
+<p>This worked well for years under Ubuntu 14.04 and Gnome 3.20, but stopped working with the upgrade to Bionic Beaver. More specifically, <code>&lt;Super&gt;+&lt;F1&gt;</code> is now System Help, with no way to change it.</p>
+<p>&ldquo;<em>No problem</em>&rdquo;, I thought; this can be easily adjusted in System Settings.</p>
+<p>Nops.</p>
+<p>I searched around, and found other folks <a href="https://stackoverflow.com/questions/49685845/ubuntu-17-10-gnome-keyboard-shortcut-super-f1-can-not-be-reset-to-other-gui-acti">with the same problem</a>, but no solution.</p>
+<p>I then decided to dug into the source code, and discovered the improbable: Gnome devs decided the help was <em>so</em> important that it deserved its own unique, <em>hardcoded</em>, and <em>immutable</em> shortcut. If you want to reassign it, you&rsquo;re out of luck.</p>
+<p>According to gnome-settings-daemon <a href="https://gitlab.gnome.org/GNOME/gnome-settings-daemon/blob/master/NEWS">changelog</a>:</p>
+<pre><code>===============
+Version 3.21.90
+===============
+...
+ Media keys:
+    - Add Super+F1 as a hardcoded shortcut for launching Help
+...
+</code></pre>
+<p>REALLY?  What&rsquo;s wrong with a default icon in the toolbar, or maybe a popup window when you boot for the first time?  Also, does anyone really care about reading the basic documentation for&hellip; a windows manager?</p>
+<p>I wasn&rsquo;t convinced yet, but a closer look at the <a href="https://gitlab.gnome.org/GNOME/gnome-settings-daemon/blob/master/plugins/media-keys/shortcuts-list.h">source code</a> confirmed my fear: there it was: (file /gnome-settings-daemon/blob/master/plugins/media-keys/shortcuts-list.h):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>{ HELP_KEY, NULL, <span style="color:#a6e22e">N_</span>(<span style="color:#e6db74">&#34;Help&#34;</span>), <span style="color:#e6db74">&#34;&lt;Super&gt;F1&#34;</span>, GSD_ACTION_MODE_LAUNCHER },
+</span></span></code></pre></div><p>So if you&rsquo;re really determined to regain control of your <code>&lt;Super&gt;+&lt;F1&gt;</code>, there&rsquo;s only one solution: to recompile gnome-settings-daemon, and replace the gsd-media-keys plugin. Spoiler alert: I&rsquo;m glad to report that my patch was successful, but beware: getting the right dependencies and recompiling Gnome is not an easy feat. Keep reading if you&rsquo;re interested in doing the same:</p>
+<ol>
+<li>Download and install <a href="https://wiki.gnome.org/Apps/Builder">Gnome Builder</a></li>
+<li>Click on &ldquo;Clone&rdquo;, select a local directory (e.g., ~/Projects/) and use the official repo at <code>https://gitlab.gnome.org/GNOME/gnome-settings-daemon</code></li>
+<li>Open xterm, and enter <code>cd ~/Projects/gnome-settings-daemon; git checkout tags/GNOME_SETTINGS_DAEMON_3_28_1</code> (you can check your exact version with <code>gnome-shell --version</code>. Check all tags available with <code>git tag -l</code>)</li>
+<li>Install all dependencies. These were the ones missing in my system, but YMMV:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt install libcolord-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libgeocode-glib-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        gnome-desktop3-data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libgnome-desktop-3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libgweather-3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libcanberra-gtk3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libgeoclue-2-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libnotify-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libpulse-mainloop-glib0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libpulse-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        gobject-introspection <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libupower-glib-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libpolkit-gobject-1-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libasound2-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libgudev-1.0-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libwacom-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libnss3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libcups2-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        libnm-dev
+</span></span></code></pre></div><ol start="5">
+<li>Patch the source code by editing <code>~/Projects/gnome-settings-daemon/plugins/media-keys/shortcuts-list.h</code>, and add a comment in front of the offender, like below (for Gnome 3.28.1 it is in line 69):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// disabled! // { HELP_KEY, NULL, N_(&#34;Help&#34;), &#34;&lt;Super&gt;F1&#34;, GSD_ACTION_MODE_LAUNCHER },
+</span></span></span></code></pre></div><ol start="6">
+<li>Click [<em>Rebuild</em>] button in the Builder UI to compile (note: you need to click <em>Rebuild</em>, and not <del><em>Build</em></del>). You may want to turn off the deprecation warnings by editing <code>meson.build</code> and adding <code>'-Wno-deprecated-declarations'</code> to <code>test_cflags = [...];</code> (line 70). If you installed all the dependencies correctly, you should have no warnings nor errors.</li>
+<li>Find the compiled binaries. You&rsquo;re looking specifically for the plugin <code>gsd-media-keys</code>, so it&rsquo;ll likely be in the directory ~/.var/app/org.gnome.Builder/cache/gnome-builder/projects/gnome-settings-daemon/builds/default-host-HEAD/plugins/media-keys</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/.var/app/org.gnome.Builder/cache/gnome-builder/projects/gnome-settings-daemon/builds/default-host-HEAD/plugins/media-keys ~
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cp ./gsd-media-keys ~/gsd-media-keys.patched
+</span></span></code></pre></div><ol start="8">
+<li>Before proceeding, you may want to inspect your binary to confirm it successfully linked with shared libraries by using <code>ldd ~/gsd-media-keys.patched</code>. In my case I had problems finding <code>libgsd.so</code>, so I solved it by adding the path to ldconfig (although the correct solution would be to fix this in the build system):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo sh -c <span style="color:#e6db74">&#39;echo &#34;# gnome-settings-daemon\n/usr/lib/x86_64-linux-gnu/gnome-settings-daemon-3.0/\n&#34; &gt; /etc/ld.so.conf.d/gnome-settings-daemon.conf&#39;</span>
+</span></span><span style="display:flex;"><span>sudo ldconfig
+</span></span></code></pre></div><ol start="9">
+<li>You&rsquo;re now ready to install the patched <code>gsd-media-keys</code> binary in your system:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /usr/lib/gnome-settings-daemon/
+</span></span><span style="display:flex;"><span>sudo mv ~/gsd-media-keys.patched .
+</span></span><span style="display:flex;"><span>sudo strip -s ./gsd-media-keys.patched
+</span></span><span style="display:flex;"><span>sudo mv gsd-media-keys gsd-media-keys.orig
+</span></span><span style="display:flex;"><span>sudo ln -s gsd-media-keys.patched gsd-media-keys
+</span></span></code></pre></div><ol start="10">
+<li>Log out or reboot, and you&rsquo;re done!</li>
+</ol>
+<p>If all goes well, your system now should be running the gsd-media-keys plugin without the <code>&lt;Super&gt;+&lt;F1&gt;</code> hardcoded, so you can reassign to anything you like.</p>
+<p>If anything goes wrong and you can&rsquo;t log in, don&rsquo;t despair. Simply open a console terminal by using <code>&lt;Ctrl&gt;+&lt;Alt&gt;+&lt;F2&gt;</code> and restore your original gsd-media-keys binary by doing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /usr/lib/gnome-settings-daemon/
+</span></span><span style="display:flex;"><span>sudo rm gsd-media-keys
+</span></span><span style="display:flex;"><span>sudo ln -s gsd-media-keys.orig gsd-media-keys
+</span></span></code></pre></div><p>Use <code>&lt;Ctrl&gt;+&lt;Alt&gt;&lt;F1&gt;</code> to go back to Gnome and log in again. You can then inspect <code>/var/log/syslog</code> to understand what went wrong (search for  &ldquo;media-keys&rdquo;). It&rsquo;s likely that you had problems with the dynamic libraries in step 8 above.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://wrgms.com/disable-mouse-battery-low-spam-notification/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Disable &#34;Mouse battery low&#34; spam notification on Ubuntu</span>
+  </a>
+  <a class="next" href="https://wrgms.com/5-years-ago-the-world-lost-aaron-swartz/">
+    <span class="title">Next »</span>
+    <br>
+    <span>5 years ago, the world lost Aaron Swartz</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fixing Gnome 3.2x hardcoded &#43; shortcut on x"
+            href="https://x.com/intent/tweet/?text=Fixing%20Gnome%203.2x%20hardcoded%20%3cSuper%3e%2b%3cF1%3e%20shortcut&amp;url=https%3a%2f%2fwrgms.com%2ffixing-gnome-3-2x-hardcoded-superf1-shortcut%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fixing Gnome 3.2x hardcoded &#43; shortcut on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwrgms.com%2ffixing-gnome-3-2x-hardcoded-superf1-shortcut%2f&amp;title=Fixing%20Gnome%203.2x%20hardcoded%20%3cSuper%3e%2b%3cF1%3e%20shortcut&amp;summary=Fixing%20Gnome%203.2x%20hardcoded%20%3cSuper%3e%2b%3cF1%3e%20shortcut&amp;source=https%3a%2f%2fwrgms.com%2ffixing-gnome-3-2x-hardcoded-superf1-shortcut%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fixing Gnome 3.2x hardcoded &#43; shortcut on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Fixing%20Gnome%203.2x%20hardcoded%20%3cSuper%3e%2b%3cF1%3e%20shortcut&u=https%3a%2f%2fwrgms.com%2ffixing-gnome-3-2x-hardcoded-superf1-shortcut%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer><div id="disqus_thread"></div>
+
+
+<br>
+<div id="disqus_thread" class="disqus_link_showcomments">
+    <a href="#" onclick="disqus(); return(false);">[ Show comments ]</a>
+</div>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function disqus() {
+        window.disqus_config = function () {
+            
+            
+            
+        };
+
+        if (!disqus_loaded)  {
+            disqus_loaded = true;
+            document.getElementById("disqus_thread").classList.remove('disqus_link_showcomments');
+            (function() {
+                if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                    return;
+                }
+                var d = document, s = d.createElement('script'); s.async = true;
+                s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2025 <a href='/about'>Gui Ambros</a></span> · 
+        Built with 🖤 using <a href='https://gohugo.io/' rel='noopener noreferrer' target='_blank'>Hugo</a> + <a href='https://github.com/adityatelange/hugo-PaperMod/' rel='noopener' target='_blank'>PaperMod</a> · 
+
+    
+            <a href='/index.xml'>rss</a>
+
+    
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

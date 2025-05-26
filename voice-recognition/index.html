@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Voice Recognition on Embedded Devices - Part 1 | wrgms.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="I&rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:
+
+Must be able to listen continuously
+Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black)
+Good accuracy on a limited set of words (English only)
+Decent performance, particularly on low-power CPUs
+
+My first thought was to use Google Speech API. The accuracy is great, and it&rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn&rsquo;t satisfy requirement #1. And I don&rsquo;t like the idea of streaming all of my personal conversations to anyone. It&rsquo;s already enough to have NSA listening to my phone calls&hellip;">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com/voice-recognition/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.67171b120c51fb25f1a2b5f4a8eac05f924715aabe8693ed6ee8d17ce2425279.css" integrity="sha256-ZxcbEgxR&#43;yXxorX0qOrAX5JHFaq&#43;hpPtbujRfOJCUnk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com/voice-recognition/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"> 
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com/" accesskey="h" title="wrgms.com (Alt + H)">wrgms.com</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Voice Recognition on Embedded Devices - Part 1
+    </h1>
+    <div class="post-meta"><span title='2014-11-10 03:51:43 +0000 UTC' style='color: var(--post-date-color);'>November 10, 2014</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>I&rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:</p>
+<ol>
+<li>Must be able to listen continuously</li>
+<li>Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black)</li>
+<li>Good accuracy on a limited set of words (English only)</li>
+<li>Decent performance, particularly on low-power CPUs</li>
+</ol>
+<p>My first thought was to use Google Speech API. The accuracy is great, and it&rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn&rsquo;t satisfy requirement #1. And I don&rsquo;t like the idea of streaming <em>all</em> of my personal conversations to anyone. It&rsquo;s already enough to have NSA listening to my phone calls&hellip;</p>
+<p>(maybe it&rsquo;s an option for the future, when implementing something with a physical push-button, like a Star Trek communicator device)</p>
+<p><a href="https://github.com/plamoni/SiriProxy">SiriProxy</a> is another neat hack, but it doesn&rsquo;t work with iOS7/8 anymore. Apple will soon offer an official interface to Siri via its <a href="https://developer.apple.com/homekit/">HomeKit program</a>, but it&rsquo;ll only work with licensed hardware. Likely not an option for hackers and personal projects.</p>
+<p>After some research, I found <a href="http://cmusphinx.sourceforge.net/">CMUSphinx project</a>, which seems to be the best project in the area of voice recognition. PocketSphinx toolkit is the version you want for embedded CPUs, as it&rsquo;s pure C, and rather portable.</p>
+<p>The documentation is not very friendly, but once you get it going, it works well.</p>
+<p>The first step is to download and install <a href="http://sourceforge.net/projects/cmusphinx/files/sphinxbase/0.8/">SphinxBase</a>, followed by <a href="http://sourceforge.net/projects/cmusphinx/files/pocketsphinx/0.8/">PocketSphinx</a>. The <code>README</code> has instructions to compile and install, but it&rsquo;s the basic</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./configure
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>make install
+</span></span></code></pre></div><p>By default it&rsquo;ll install binaries to /usr/local/bin, and language models to /usr/local/share. Make sure you have <em>swig</em> and <em>alsa</em> drivers installed before starting (<code>apt-get install swig alsa-base alsa-utils</code>).</p>
+<p>Once installed, you need to figure out which dictionary model you want to use. Just for testing, I created a dictionary with 106 words, based on the old Logo language (remember the Logo turtle?), like <code>forward</code>, <code>backward</code>, <code>turn right</code>, <code>turn left</code>, etc.</p>
+<p>Before you can start training PocketSphinx, you&rsquo;ll need an acoustic model. Sadly, the speech corpus (i.e., audio files with spoken words) used to train the models are usually closed source. So either you spend a couple of hours recording the voices (or using an4/Voxforge) to train your own model, or you&rsquo;ll skip this entirely and just use some of the built-in models, accepting lower accuracy. Given my limited number of words in the dictionary, I decided to go with built in acoustic models.</p>
+<p>Next, you need to describe your Language Model - the words, grammar, and frequency of words that you want to recognize. <a href="http://cmusphinx.sourceforge.net/wiki/tutoriallm">This tutorial</a> has more details. If you&rsquo;re in a hurry and just want to get PocketSphinx going with a dictionary for your pre-defined words, save yourself some trouble and use the online <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">lmtool</a>. This webservice will allow you to upload your dictionary file (a simple ASCII file, with one sentence or word per line), and it&rsquo;ll generate all the language models you need to run PocketSphinx.</p>
+<p>Here&rsquo;s a sample of my dictionary file:</p>
+<pre tabindex="0"><code>announce
+answer
+ask
+back
+clipboard
+color
+copy
+count
+...
+sentence
+set
+space
+square root
+stamp
+wait
+wait until
+when
+who
+word
+</code></pre><p>If you want to play with this dictionary, download these files <a href="https://wrgms.com/posts/voice-recognition-on-embedded-devices-part-1/logo_lm.tgz">here</a>, and run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pocketsphinx_continuous -lm lm/logo.lm -dict lm/logo.dic
+</span></span></code></pre></div><p>(note: if pocketsphinx is stuck at <em>READY</em>, it&rsquo;s probably listening to the wrong hw device. Check where is the microphone attached via <code>cat /proc/asound/cards</code>, and add <code>-adcdev plughw:X,0</code> to the line above, replacing X by the hardware id of your microphone).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pocketsphinx_continuous -lm lm/logo.lm -dict lm/logo.dic -adcdev plughw:2,0
+</span></span></code></pre></div><p>Smartphones use all sorts of tricks to cancel the background noise, but that requires special hardware, so you&rsquo;ll need a reasonable quiet environment. Otherwise the accuracy will suffer, depending on how large your dictionary is.</p>
+<p>As you would expect, smaller dictionaries have <em>much</em> better accuracy. With a 100-word, I got 60-70% correct. After I reduced to a simple 15-words dictionary, I got virtually 100% match rate, even with some background noise and a non-American accent. Certainly enough for my projects.</p>
+<p><strong>Next up</strong>: running this on a Raspberry Pi, installing a decent openair microphone, and testing overall performance when connected to a home automation system. Stay tuned!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://wrgms.com/editing-files-remotely-via-ssh-on-sublimetext-3/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Editing files remotely via SSH on SublimeText 3</span>
+  </a>
+  <a class="next" href="https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Intl keyboard mapping for Latin characters on Ubuntu 20.04 (updated)</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Voice Recognition on Embedded Devices - Part 1 on x"
+            href="https://x.com/intent/tweet/?text=Voice%20Recognition%20on%20Embedded%20Devices%20-%20Part%201&amp;url=https%3a%2f%2fwrgms.com%2fvoice-recognition%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Voice Recognition on Embedded Devices - Part 1 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwrgms.com%2fvoice-recognition%2f&amp;title=Voice%20Recognition%20on%20Embedded%20Devices%20-%20Part%201&amp;summary=Voice%20Recognition%20on%20Embedded%20Devices%20-%20Part%201&amp;source=https%3a%2f%2fwrgms.com%2fvoice-recognition%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Voice Recognition on Embedded Devices - Part 1 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Voice%20Recognition%20on%20Embedded%20Devices%20-%20Part%201&u=https%3a%2f%2fwrgms.com%2fvoice-recognition%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer><div id="disqus_thread"></div>
+
+
+<br>
+<div id="disqus_thread" class="disqus_link_showcomments">
+    <a href="#" onclick="disqus(); return(false);">[ Show comments ]</a>
+</div>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function disqus() {
+        window.disqus_config = function () {
+            
+            
+            
+        };
+
+        if (!disqus_loaded)  {
+            disqus_loaded = true;
+            document.getElementById("disqus_thread").classList.remove('disqus_link_showcomments');
+            (function() {
+                if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                    return;
+                }
+                var d = document, s = d.createElement('script'); s.async = true;
+                s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2025 <a href='/about'>Gui Ambros</a></span> · 
+        Built with 🖤 using <a href='https://gohugo.io/' rel='noopener noreferrer' target='_blank'>Hugo</a> + <a href='https://github.com/adityatelange/hugo-PaperMod/' rel='noopener' target='_blank'>PaperMod</a> · 
+
+    
+            <a href='/index.xml'>rss</a>
+
+    
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

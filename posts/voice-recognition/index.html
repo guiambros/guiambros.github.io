@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Voice Recognition on Embedded Devices - Part 1 | WarGames</title>
+<meta name="keywords" content="">
+<meta name="description" content="I&rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:
+
+Must be able to listen continuously
+Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black)
+Good accuracy on a limited set of words (English only)
+Decent performance, particularly on low-power CPUs
+
+My first thought was to use Google Speech API. The accuracy is great, and it&rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn&rsquo;t satisfy my requirement #1. And I don&rsquo;t like the idea of streaming all of my personal conversations to Google. It&rsquo;s already enough to have NSA listening to my phone calls&hellip;">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com:443/posts/voice-recognition/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.82dbd1eb53a66f19cbfb2a9b41984979e0118e8b671c733ce84cbdcd685bc7aa.css" integrity="sha256-gtvR61OmbxnL&#43;yqbQZhJeeARjotnHHM86Ey9zWhbx6o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com:443/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com:443/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com:443/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com:443/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com:443/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com:443/posts/voice-recognition/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+  
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com:443/" accesskey="h" title="WarGames (Alt + H)">WarGames</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Voice Recognition on Embedded Devices - Part 1
+    </h1>
+    <div class="post-meta"><span title='2014-11-10 03:51:43 +0000 UTC' style='color: var(--post-date-color);'>November 10, 2014</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>I&rsquo;m currently working to add voice recognition to some of my embedded projects. The requirements are:</p>
+<ol>
+<li>Must be able to listen continuously</li>
+<li>Run on embedded ARM processors (particuarly Raspberry Pi and BeagleBone Black)</li>
+<li>Good accuracy on a limited set of words (English only)</li>
+<li>Decent performance, particularly on low-power CPUs</li>
+</ol>
+<p>My first thought was to use Google Speech API. The accuracy is great, and it&rsquo;s reasonably fast. But it is also limited to only 50 calls per day, so it wouldn&rsquo;t satisfy my requirement #1. And I don&rsquo;t like the idea of streaming <em>all</em> of my personal conversations to Google. It&rsquo;s already enough to have NSA listening to my phone calls&hellip;</p>
+<p>(maybe it&rsquo;s an option for the future, when implementing something with a physical push-button, like a Star Trek communicator device)</p>
+<p><a href="https://github.com/plamoni/SiriProxy">SiriProxy</a> is another neat hack, but it doesn&rsquo;t work with iOS7/8 anymore. Apple will soon offer an official interface to Siri via its <a href="https://developer.apple.com/homekit/">HomeKit program</a>, but it&rsquo;ll only work with licensed hardware. Likely not an option for hackers and personal projects.</p>
+<p>After some research, I found <a href="http://cmusphinx.sourceforge.net/">CMUSphinx project</a>, which seems to be the best project in the area of voice recognition. PocketSphinx toolkit is the version you want for embedded CPUs, as it&rsquo;s pure C, and rather portable.</p>
+<p>The documentation is not very friendly, but once you get it going, it works well.</p>
+<p>The first step is to download and install <a href="http://sourceforge.net/projects/cmusphinx/files/sphinxbase/0.8/">SphinxBase</a>, followed by <a href="http://sourceforge.net/projects/cmusphinx/files/pocketsphinx/0.8/">PocketSphinx</a>. The <code>README</code> has instructions to compile and install, but it&rsquo;s the basic</p>
+<pre><code>./configure
+make
+make install
+</code></pre>
+<p>By default it&rsquo;ll install binaries to /usr/local/bin, and language models to /usr/local/share. Make sure you have <em>swig</em> and <em>alsa</em> drivers installed before starting (<code>apt-get install swig alsa-base alsa-utils</code>).</p>
+<p>Once installed, you need to figure out which dictionary model you want to use. Just for testing, I created a dictionary with 106 words, based on the old Logo language (remember the Logo turtle?), like <code>forward</code>, <code>backward</code>, <code>turn right</code>, <code>turn left</code>, etc.</p>
+<p>Before you can start training PocketSphinx, you&rsquo;ll need an acoustic model. Sadly, the speech corpus (i.e., audio files with spoken words) used to train the models are usually closed source. So either you spend a couple of hours recording the voices (or using an4/Voxforge) to train your own model, or you&rsquo;ll skip this entirely and just use some of the built-in models, accepting lower accuracy. Given my limited number of words in the dictionary, I decided to go with built in acoustic models.</p>
+<p>Next, you need to describe your Language Model - the words, grammar, and frequency of words that you want to recognize. <a href="http://cmusphinx.sourceforge.net/wiki/tutoriallm">This tutorial</a> has more details. If you&rsquo;re in a hurry and just want to get PocketSphinx going with a dictionary for your pre-defined words, save yourself some trouble and use the online <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">lmtool</a>. This webservice will allow you to upload your dictionary file (a simple ASCII file, with one sentence or word per line), and it&rsquo;ll generate all the language models you need to run PocketSphinx.</p>
+<p>Here&rsquo;s a sample of my dictionary file:</p>
+<pre><code class="html">
+    announce
+    answer
+    ask
+    back
+    clipboard
+    color
+    copy
+    count
+    ...
+    sentence
+    set
+    space
+    square root
+    stamp
+    wait
+    wait until
+    when
+    who
+    word
+</code></pre>
+<p>If you want to play with this dictionary, download these files <a href="https://wrgms.com/posts/voice-recognition-on-embedded-devices-part-1/logo_lm.tgz">here</a>, and run:</p>
+<pre><code>pocketsphinx_continuous -lm lm/logo.lm -dict lm/logo.dic
+</code></pre>
+<p>(note: if pocketsphinx is stuck at <em>READY</em>, it&rsquo;s probably listening to the wrong hw device. Check where is the microphone attached via <code>cat /proc/asound/cards</code>, and add <code>-adcdev plughw:X,0</code> to the line above, replacing X by the hardware id of your microphone).</p>
+<pre><code>pocketsphinx_continuous -lm lm/logo.lm -dict lm/logo.dic -adcdev plughw:2,0
+</code></pre>
+<p>Smartphones use all sorts of tricks to cancel the background noise, but that requires special hardware, so you&rsquo;ll need a reasonable quiet environment. Otherwise the accuracy will suffer, depending on how large your dictionary is.</p>
+<p>As you would expect, smaller dictionaries have <em>much</em> better accuracy. With a 100-word, I got 60-70% correct. After I reduced to a simple 15-words dictionary, I got virtually 100% match rate, even with some background noise and a non-American accent. Certainly enough for my projects.</p>
+<p>Next up: running this on a Raspberry Pi, installing a decent openair microphone, and testing overall performance when connected to a home automation system. Stay tuned!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        
+        
+        
+        
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://wrgms.com:443/">WarGames</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

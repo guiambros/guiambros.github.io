@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Iphone6 on wrgms.com</title>
+    <link>https://wrgms.com/categories/iphone6/</link>
+    <description>Recent content in Iphone6 on wrgms.com</description>
+    <image>
+      <title>wrgms.com</title>
+      <url>https://wrgms.com/images/cover.jpg</url>
+      <link>https://wrgms.com/images/cover.jpg</link>
+    </image>
+    <generator>Hugo -- 0.147.1</generator>
+    <language>en-us</language>
+    <copyright>2025 Gui Ambros</copyright>
+    <lastBuildDate>Wed, 10 Sep 2014 01:04:16 +0000</lastBuildDate>
+    <atom:link href="https://wrgms.com/categories/iphone6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apple Keynote on Linux without Safari</title>
+      <link>https://wrgms.com/apple-2014-september-keynote-on-linux/</link>
+      <pubDate>Wed, 10 Sep 2014 01:04:16 +0000</pubDate>
+      <guid>https://wrgms.com/apple-2014-september-keynote-on-linux/</guid>
+      <description>&lt;p align=&#34;center&#34;&gt;
+&lt;p&gt;&lt;img alt=&#34;The new iPhone 6 announced today during Apple&amp;rsquo;s keynote&#34; loading=&#34;lazy&#34; src=&#34;https://wrgms.com/content/images/2014/Sep/iphone6tb.png&#34;&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;So you just got home, thirsty to watch today&amp;rsquo;s keynote without the streaming issues of this morning, but you use Linux and hate safari?&lt;/p&gt;
+&lt;p&gt;Fear not, here&amp;rsquo;s how to watch it using VLC:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;vlc --ffmpeg-threads&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;http://p.events-delivery.apple.com.edgesuite.net/14pijnadfpvkjnfvpijhabdfvpijbadfv09/m3u8/sl_vod_mvp.m3u8&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;p&gt;Thanks Chan-Ho Suh on &lt;a href=&#34;http://askubuntu.com/questions/206824/how-to-watch-apple-keynote-videos-from-the-website&#34;&gt;AskUbuntu@StackExchange&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Synology&#39;s &#34;secret&#34; telnet password | wrgms.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="If you have a Synology NAS and had some sort of disk crash in the past, you&rsquo;ve probably encountered the famous &ldquo;Cannot format system partition&rdquo; and &ldquo;Please configure your router to forward port 23 to DiskStation and contact Synology online support&rdquo;.
+Yeah, it sucks.
+It sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don&rsquo;t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com/synologys-secret-telnet-password/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.67171b120c51fb25f1a2b5f4a8eac05f924715aabe8693ed6ee8d17ce2425279.css" integrity="sha256-ZxcbEgxR&#43;yXxorX0qOrAX5JHFaq&#43;hpPtbujRfOJCUnk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com/synologys-secret-telnet-password/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top"> 
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com/" accesskey="h" title="wrgms.com (Alt + H)">wrgms.com</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Synology&#39;s &#34;secret&#34; telnet password
+    </h1>
+    <div class="post-meta"><span title='2012-12-08 21:28:00 +0000 UTC' style='color: var(--post-date-color);'>December 8, 2012</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>If you have a Synology NAS and had some sort of disk crash in the past, you&rsquo;ve probably encountered the famous <em>&ldquo;Cannot format system partition&rdquo;</em> and <em>&ldquo;Please configure your router to forward port 23 to DiskStation and contact Synology online support&rdquo;</em>.</p>
+<p>Yeah, it sucks.</p>
+<p>It sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don&rsquo;t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.</p>
+<p>You&rsquo;ve probably tried telneting to your NAS. Maybe you&rsquo;ve even tried <a href="http://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial/">opening the case and hacking the serial port</a>, only to discover that you don&rsquo;t have the root password. The DS Assistant password doesn&rsquo;t work, and you exhausted all obvious guesses - <em>blank</em>, <em>synopass</em>, <em>synology</em>, <em>password</em>, <em>admin</em>, <em>root</em>, etc.</p>
+<p>Well, what about <code>c12-0804</code>? No, I didn&rsquo;t make this up. This is today&rsquo;s password.</p>
+<p>But if you&rsquo;re reading this a few days (or years) from now, too bad; it won&rsquo;t work. Unless, of course, you wait until December 8th. Because the password repeats every year.</p>
+<p>Basically Synology hardcoded a modified login binary within the firmware that accepts an obfuscated password for root, which depends on the current date. (by the way, <a href="https://serverfault.com/questions/458553/cant-log-in-via-ssh-to-any-accounts-using-bin-bash-shell-on-synology-nas/">this isn&rsquo;t the only thing Synology folks hardcoded in the firmware</a>).</p>
+<p>Thanks to GPL, Synology was forced to publish the original source code for the firmware. Based on the original <em><a href="https://gist.github.com/4242127">correct_password.c</a></em> code, I hacked a short snippet to generate the daily password.</p>
+<p>Here&rsquo;s the Synology Telnet password generator:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&amp;lt;stdlib.h&amp;gt; </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&amp;lt;time.h&amp;gt; </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&amp;lt;stdio.h&amp;gt; </span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> timeval tvTime;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> tm tmOutput;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">gettimeofday</span>(<span style="color:#f92672">&amp;</span>amp;tvTime, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">localtime_r</span>(<span style="color:#f92672">&amp;</span>amp;(tvTime.tv_sec), <span style="color:#f92672">&amp;</span>amp;tmOutput);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    tmOutput.tm_mon <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;password for today is: %x%02d-%02x%02d</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        tmOutput.tm_mon, tmOutput.tm_mon, tmOutput.tm_mday,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">gcd</span>(tmOutput.tm_mon, tmOutput.tm_mday));
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">gcd</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (b<span style="color:#f92672">?</span><span style="color:#a6e22e">gcd</span>(b,a<span style="color:#f92672">%</span>b)<span style="color:#f92672">:</span>a);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Compile and run the code above with <code>gcc</code>. You can also use the excellent <a href="http://codepad.org/4TrgWs9X"><del>Codepad</del></a>   <a href="https://repl.it/H7Mh">Repl.it</a> to run the code online and get the password for today (no registration needed).</p>
+<p>Bonus tip: if you&rsquo;re curious how exactly the password is generated, here&rsquo;s the algorithm:</p>
+<ul>
+<li>1st character = month in hexadecimal, lower case (1=Jan, &hellip; , a=Oct, b=Nov, c=Dec)</li>
+<li>2-3 = month in decimal, zero padded and starting in 1 (01, 02, 03, &hellip;, 11, 12)</li>
+<li>4 = dash</li>
+<li>5-6 = day of the month in hex (01, 02 .., 0A, .., 1F)</li>
+<li>7-8 = <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a>  between month and day, zero padded. This is always a number between 01 and 12.</li>
+</ul>
+<p>So, let&rsquo;s say today is October 15, the password would be: <strong>a10-0f05</strong> where <strong>a</strong> = month in hex, <strong>10</strong> = month in decimal, <strong>0f</strong> = day in hex, <strong>05</strong> = greatest divisor between 10 and 15).</p>
+<p>If you have trouble calculating the greatest common divisor (elementary math, anyone?), <a href="http://www.wolframalpha.com/input/?i=gcd%2815%2C+5%29">Wolfram Alpha is your friend</a>.</p>
+<p>This was tested on a Synology DS212+, with Marvell Kirkwood mv6282 chipset. It&rsquo;s unlikely but still possible that different models use a different algorithm. YMMV, so always check the <a href="http://sourceforge.net/projects/dsgpl/">source code</a>.</p>
+<p><em>[UPDATE 1: Several users reported that this works in many other models, including DS409, DS112j, etc. Please leave a comment with your model and firmware version.]</em></p>
+<p><em>[UPDATE 2: If it doesn&rsquo;t work, it&rsquo;s probably that your date is incorrect in the NAS. Per Patrick&rsquo;s suggestion in the comments below, try &ldquo;101-0101&rdquo;, which is the password for Jan 01]</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://wrgms.com/lessig-blog-v2-prosecutor-as-bully/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Lessig Blog, v2: Prosecutor as bully</span>
+  </a>
+  <a class="next" href="https://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Recovering a Failed Synology Diskstation with a Serial Console</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Synology&#39;s &#34;secret&#34; telnet password on x"
+            href="https://x.com/intent/tweet/?text=Synology%27s%20%22secret%22%20telnet%20password&amp;url=https%3a%2f%2fwrgms.com%2fsynologys-secret-telnet-password%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Synology&#39;s &#34;secret&#34; telnet password on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwrgms.com%2fsynologys-secret-telnet-password%2f&amp;title=Synology%27s%20%22secret%22%20telnet%20password&amp;summary=Synology%27s%20%22secret%22%20telnet%20password&amp;source=https%3a%2f%2fwrgms.com%2fsynologys-secret-telnet-password%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Synology&#39;s &#34;secret&#34; telnet password on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Synology%27s%20%22secret%22%20telnet%20password&u=https%3a%2f%2fwrgms.com%2fsynologys-secret-telnet-password%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer><div id="disqus_thread"></div>
+
+
+<br>
+<div id="disqus_thread" class="disqus_link_showcomments">
+    <a href="#" onclick="disqus(); return(false);">[ Show comments ]</a>
+</div>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function disqus() {
+        window.disqus_config = function () {
+            
+            
+            
+        };
+
+        if (!disqus_loaded)  {
+            disqus_loaded = true;
+            document.getElementById("disqus_thread").classList.remove('disqus_link_showcomments');
+            (function() {
+                if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                    return;
+                }
+                var d = document, s = d.createElement('script'); s.async = true;
+                s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2025 <a href='/about'>Gui Ambros</a></span> · 
+        Built with 🖤 using <a href='https://gohugo.io/' rel='noopener noreferrer' target='_blank'>Hugo</a> + <a href='https://github.com/adityatelange/hugo-PaperMod/' rel='noopener' target='_blank'>PaperMod</a> · 
+
+    
+            <a href='/index.xml'>rss</a>
+
+    
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

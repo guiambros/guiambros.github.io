@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>gTLDs and the death of URLs | WarGames</title>
+<meta name="keywords" content="gTLD,  internet">
+<meta name="description" content="Unless you&rsquo;ve been living under a rock, you&rsquo;ve read ad nauseum about the overly optimistic predictions for the new gTLDs. Some say it&rsquo;ll the the digital renaissance; others claim it&rsquo;s the  best thing to ever happen to the web, after the browser itself.
+This video summarizes well the sentiment:
+
+  
+
+
+This is wrong.">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com:443/posts/gtlds-and-the-death-of-urls/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.82dbd1eb53a66f19cbfb2a9b41984979e0118e8b671c733ce84cbdcd685bc7aa.css" integrity="sha256-gtvR61OmbxnL&#43;yqbQZhJeeARjotnHHM86Ey9zWhbx6o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com:443/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com:443/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com:443/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com:443/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com:443/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com:443/posts/gtlds-and-the-death-of-urls/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+  
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com:443/" accesskey="h" title="WarGames (Alt + H)">WarGames</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      gTLDs and the death of URLs
+    </h1>
+    <div class="post-meta"><span title='2014-08-30 04:59:19 +0000 UTC' style='color: var(--post-date-color);'>August 30, 2014</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Unless you&rsquo;ve been living under a rock, you&rsquo;ve read <em>ad nauseum</em> about the overly optimistic predictions for the new gTLDs. Some say it&rsquo;ll the the digital renaissance; others claim it&rsquo;s the  best thing to ever happen to the web, after the browser itself.</p>
+<p>This video summarizes well the sentiment:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 0.5rem;">
+  <iframe
+    src="https://www.youtube.com/embed/1kFcxf8KAjg"
+    frameborder="0"
+    allowfullscreen
+    loading="lazy"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+  ></iframe>
+</div>
+
+<p>This is wrong.</p>
+<p>Ten years from now we&rsquo;ll look back and realize how much the new gTLDs have hurt us.</p>
+<hr>
+<p>First, most of the new gTLDs add little or no value. I bet we could live another 50 years without a .ninja, a .soy, .fail, .florist, or .loans.</p>
+<p>Others will proclaim that the new gTLDs are useful, and point to domains like .nyc, .london, or .website, as examples of the &ldquo;democratization&rdquo; promoted by the new categories.</p>
+<p>But these will be the exception, rather than the rule. In practice the new gTLDS will force brands to spend millions of dollars to protect against <a href="http://www.forbes.com/sites/danielfisher/2014/02/27/cybersquatters-rush-to-claim-brands-in-the-new-gtld-territories/">cybersquatters rushing to claim new brand-related domains</a>, amongst other threats.</p>
+<p>Before you had to register your brand across a handful of TLDs. Now you have 1,400 more to worry about. That&rsquo;s like a whack-a-mole game, but you&rsquo;re outnumbered by hundreds of moles, for each hand you have.</p>
+<p>And yet, this is not my main concern. Brands got screwed, and will spend a lot of money, while domain registrars will be very happy. Still, life will move on.</p>
+<p>My main concern is a different one. The new gTLDs will accelerate the demise of the URI. Let me explain.</p>
+<p>We already lost users to search. It&rsquo;s more convenient to simply type &ldquo;Brand&rdquo; instead of &ldquo;brand.com&rdquo;. Even better when the results already predict what exactly you want to searching <em>within</em> the website, so you can deeplink from Google results page to the internal section you were looking for.</p>
+<p>Brands got screwed again, and now have to spend hundreds of millions of dollars to buy their <strong>own</strong> branded keywords, on a purely defensive move. And while paid search agencies will claim incredibly positive ROI on their search campaigns, the reality is that a good chunk of those clicks were going to happen anyway. But <a href="http://xkcd.com/552/">correlation does not imply causation</a>.</p>
+<p>BuNow multiply this situation by thousands of gTLDs, and you&rsquo;ll have the perfect Paradox of Choice. Is it .com, .net, .cc?  Nops. Keep trying.</p>
+<p>With no clue of what the TLD should be, guess what users will do?</p>
+<p>Now let&rsquo;s add to the mix the fact that a) most of the mobile traffic is already <a href="http://www.flurry.com/bid/109749/Apps-Solidify-Leadership-Six-Years-into-the-Mobile-Revolution#.VAFkQWBdWmE">coming from native apps</a>, and b) Apple is pushing to <a href="http://qz.com/215830/apple-just-took-another-step-towards-obscuring-the-way-the-web-works/">bury the URI</a>, and c) Google is replacing <a href="http://www.searchenginejournal.com/is-google-trumping-the-url/6820/">everything by its omni-search</a>. And we&rsquo;re not even talking about Siri or voice-activated search. This will result in a very different world.
+<br></p>
+<p>My prediction: thanks to the new gTLDs, mobile apps and commercial players will have even more control than today, and URLs will be demoted to second-class citizens. They will still be there, but buried somewhere in the sub-menus of your browser, or the API of your Chrome extensions. Just like IP addresses; you know it&rsquo;s there somewhere, but nobody cares.</p>
+<p>In the name of find-ability and ease of use, we&rsquo;ll live in URL-less world. And commercial entities will be rewarded and profit from your traffic.</p>
+<p>I&rsquo;m sure that&rsquo;s not the web that Sir Tim Berners-Lee envisioned 25 years ago.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://wrgms.com:443/tags/gtld/">GTLD</a></li>
+      <li><a href="https://wrgms.com:443/tags/-internet/"> Internet</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        
+        
+        
+        
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://wrgms.com:443/">WarGames</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

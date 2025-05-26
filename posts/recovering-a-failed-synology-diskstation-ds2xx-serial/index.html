@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Recovering a Failed Synology Diskstation with a Serial Console | WarGames</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+I thought I&rsquo;d post this here for anyone looking for help on troubleshooting a failed Synology Diskstation NAS.
+I&rsquo;ve been a happy user of a Synology DS-212&#43;. The software is robust and much better than my old DroboFS, and the fact that it is entirely open source is a big plus.
+I recently upgraded the firmware to DSM 2661. Everything worked fine. For 12 hours. The next morning, the device was dead, with the blue blink of death).">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com:443/posts/recovering-a-failed-synology-diskstation-ds2xx-serial/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.82dbd1eb53a66f19cbfb2a9b41984979e0118e8b671c733ce84cbdcd685bc7aa.css" integrity="sha256-gtvR61OmbxnL&#43;yqbQZhJeeARjotnHHM86Ey9zWhbx6o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com:443/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com:443/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com:443/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com:443/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com:443/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com:443/posts/recovering-a-failed-synology-diskstation-ds2xx-serial/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+  
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com:443/" accesskey="h" title="WarGames (Alt + H)">WarGames</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Recovering a Failed Synology Diskstation with a Serial Console
+    </h1>
+    <div class="post-meta"><span title='2012-12-02 06:57:00 +0000 UTC' style='color: var(--post-date-color);'>December 2, 2012</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><img alt="Synology Serial Console" loading="lazy" src="/content/images/2014/Feb/synology_hacking.jpg"></p>
+<p>I thought I&rsquo;d post this here for anyone looking for help on troubleshooting a failed Synology Diskstation NAS.</p>
+<p>I&rsquo;ve been a happy user of a Synology DS-212+. The software is robust and much better than my old DroboFS, and the fact that it is entirely open source is a big plus.</p>
+<p>I recently upgraded the firmware to <a href="http://www.synology.com/releaseNote_enu/DS212+.php">DSM 2661</a>. Everything worked fine. For 12 hours. The next morning, the device was dead, with the <em>blue blink of death</em>).</p>
+<p>Was it the new firmware? Or maybe a disk crash? Who knows.</p>
+<p>I followed the basic tests recommended by Synology: remove both disks, turn it on and wait 30s for a long beep. Beeeeeep. Great, the motherboard is still functional. It also responded to ping and showed up on DS Assistant, so processor and ethernet are also working fine.</p>
+<p>The Synology DS NAS is basically an embedded Linux box, using <a href="http://linux.die.net/man/4/md">md</a> + <a href="http://linux.die.net/HOWTO/LVM-HOWTO/whatislvm.html">lvm</a> for RAID. Nothing is proprietary, so I mounted the disks on my Linux desktop and spent a few more hours cloning and re-building the RAID using a spare disk. Life is good.</p>
+<p>Till&hellip; it crashed again.</p>
+<p>There was something wrong with the system partition, so I wanted to see inside the NAS, before the kernel finishes booting.</p>
+<p>Thankfully, Synology folks already put a physical serial port in there. It&rsquo;s not documented, but it&rsquo;s not hard to find. You just have to open the case.</p>
+<p><strong>Disclaimer: make sure you have backup! I am not responsible if you lose your data, void your warranty, burn down your house or kill your dog.</strong></p>
+<ul>
+<li>Start by opening the case. Here&rsquo;s a video with instructions [<em>update: the original video is not available anymore, but here&rsquo;s a <a href="https://www.youtube.com/watch?v=iWc-awYKmf0">similar one</a></em>]. Be aware this may break the small internal hooks, and you&rsquo;ll need to use tape or hot glue to put it back together (what&rsquo;s wrong with manufacturers these days? What&rsquo;s the problem with good old screws?)</li>
+<li>Inside the case, look for a 6-pin header, normally labeled JP2 (or COM1 on older models).</li>
+<li>The pins likely are:</li>
+</ul>
+<table id="rounded-corner" summary="Serial Console Header Pins" width="300">
+    <thead>
+        <tr>
+            <th scope="col" class="rounded-1st" align="center" style="width: 150px;">Pin Number</th>
+            <th scope="col" class="rounded-function" align="center" style="width: 145px;">Function</th>
+            <th scope="col" class="rounded-last" align="center" style="width: 5px;"></th>
+        </tr>
+    </thead>
+        <tfoot>
+        <tr>
+            <td colspan="2" class="rounded-foot-left"><em><small>Confirmed on Synology DS212+</small></em></td>
+            <td class="rounded-foot-right">&nbsp;</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr><td align="center">1</td><td align="center">3.3V</td><td></td></tr>
+        <tr><td align="center">2</td><td align="center">GND</td><td></td></tr>
+        <tr><td align="center">4</td><td align="center">TX</td><td></td></tr>
+        <tr><td align="center">6</td><td align="center">RX</td><td></td></tr>
+    </tbody>
+</table>
+<ul>
+<li>Now connect the pins 2, 4 and 6 (respectively GNS, TX, RX) to your USB-TTL 3v3 cable (if using the <a href="https://www.adafruit.com/products/70">FTDI cable from Adafruit</a>, it&rsquo;ll be 1-black, 5-yellow, 4-orange. Make sure you don&rsquo;t short-circuit any of the pins. <a href="http://dx.com/p/male-to-female-dupont-breadboard-jumper-wires-for-arduino-40-piece-pack-20cm-length-146935">These male-female jumper wires</a> could be useful.</li>
+<li>Open your preferred terminal program (under Win <a href="http://www.extraputty.com/">ExtraPutty</a> is the best in town), set to 115200, disable xon/xoff, and you&rsquo;re all set.</li>
+</ul>
+<p>Now you can turn on your DS, and see all the beauty of what&rsquo;s going on under the hood:</p>
+<pre><code class="asciidoc">
+         __  __                      _ _
+        |  \/  | __ _ _ ____   _____| | |
+        | |\/| |/ _` | '__\ \ / / _ \ | |
+        | |  | | (_| | |   \ V /  __/ | |
+        |_|  |_|\__,_|_|    \_/ \___|_|_|
+ _   _     ____              _
+| | | |   | __ )  ___   ___ | |_
+| | | |___|  _ \ / _ \ / _ \| __|
+| |_| |___| |_) | (_) | (_) | |_
+ \___/    |____/ \___/ \___/ \__|  ** LOADER **
+ ** MARVELL BOARD: Synology Disk Station LE
+
+U-Boot 1.1.4 (Dec  2 2011 - 15:56:02) Marvell version: 3.5.9
+
+U-Boot code: 00600000 -&gt; 0067FFF0  BSS: -&gt; 0068B3D4
+
+Soc: 88F6282 A1CPU running @ 2000Mhz L2 running @ 500Mhz
+SysClock = 500Mhz , TClock = 200Mhz
+
+DRAM (DDR3) CAS Latency = 7 tRP = 7 tRAS = 20 tRCD=7
+DRAM CS[0] base 0x00000000   size 256MB
+DRAM CS[1] base 0x10000000   size 256MB
+DRAM Total size 512MB  16bit width
+Addresses 8M - 0M are saved for the U-Boot usage.
+Mem malloc Initialization (8M - 7M): Done
+Using default environment
+
+[4096kB@f8000000] Flash:  4 MB
+
+CPU : Marvell Feroceon (Rev 1)
+
+Streaming disabled
+Write allocate disabled
+
+
+USB 0: host mode
+PEX 0: PCI Express Root Complex Interface
+PEX interface detected Link X1
+PEX 1: PCI Express Root Complex Interface
+PEX interface detected Link X1
+
+Synology Model: DS212+r1
+Fan Status: Good
+
+Net:   egiga0 [PRIME], egiga1
+Hit any key to stop autoboot:  0
+## Booting image at f8080000 ...
+   Image Name:   Linux-2.6.32.12
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    1476672 Bytes =  1.4 MB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+OK
+## Loading Ramdisk Image at f8280000 ...
+   Image Name:   synology_88f6282_212+ 2661
+   Image Type:   ARM Linux RAMDisk Image (gzip compressed)
+   Data Size:    677043 Bytes = 661.2 kB
+   Load Address: 00800000
+   Entry Point:  00800000
+   Verifying Checksum ... OK
+
+Starting kernel ...
+
+Uncompressing Linux... done, booting the kernel.
+[    0.000000] Linux version 2.6.32.12 (root@build3) (gcc version 4.2.1) #2661 Mon Nov 12 23:10:15 CST 2012
+[    0.000000] CPU: Feroceon 88FR131 [56251311] revision 1 (ARMv5TE), cr=00053977
+[    0.000000] CPU: VIVT data cache, VIVT instruction cache
+[    0.000000] Machine: Synology 6282 board
+[    0.000000] Using UBoot passing parameters structure
+[    0.000000] Sys Clk = 200000000, Tclk = 166666667
+[    0.000000] Synology Board ID: 27
+[    0.000000] Memory policy: ECC disabled, Data cache writeback
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 130048
+[    0.000000] Kernel command line: console=ttyS0,115200 ip=off initrd=0x00800040,4M root=/dev/md0 rw     syno_hw_                                          version=DS212pv20 ihd_num=2 netif_num=1 esata_7042=1
+[    0.000000] Synology Hareware Version: DS212pv20-j
+[    0.000000] Internal HD num: 2
+[    0.000000] Internal netif num: 1
+[    0.000000] Esata chip use 7042: 1
+[    0.000000] PID hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+[    0.000000] Memory: 256MB 256MB = 512MB total
+[    0.000000] Memory: 506880KB available (3508K code, 530K data, 124K init, 0K highmem)
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] NR_IRQS:128
+[    0.000000] Console: colour dummy device 80x30
+[    0.000000] Calibrating delay loop... 1985.74 BogoMIPS (lpj=9928704)
+[    0.250000] Mount-cache hash table entries: 512
+...
+Starting Avahi mDNS/DNS-SD Daemon
+[   51.280000] findhostd uses obsolete (PF_INET,SOCK_PACKET)
+[  118.290000] ata1: device plugged sstatus 0x123
+[  118.300000] ata1: exception Emask 0x10 SAct 0x0 SErr 0x4010000 action 0xe frozen
+[  118.310000] ata1: edma_err_cause=00000010 pp_flags=00000000, dev connect
+[  118.310000] ata1: SError: { PHYRdyChg DevExch }
+[  118.320000] ata1: hard resetting link
+[  124.270000] ata1: link is slow to respond, please be patient (ready=0)
+[  128.350000] ata1: SRST failed (errno=-16)
+[  128.350000] ata1: SRST fail, set srst fail flag
+[  128.350000] ata1: hard resetting link
+[  130.780000] ata1: SATA link up 3.0 Gbps (SStatus 123 SControl F300)
+[  130.780000] ata1: link reset sucessfully clear error flags
+[  130.810000] ata1.00: ATA-8: SAMSUNG HD203WI, 1AN10003, max UDMA/133
+[  130.810000] ata1.00: 3907029168 sectors, multi 0: LBA48 NCQ (depth 31/32)
+[  130.840000] ata1.00: configured for UDMA/133
+[  130.840000] ata1: EH complete
+[  130.840000] scsi 0:0:0:0: Direct-Access SAMSUNG HD203WI 1AN1 PQ: 0 ANSI: 5
+[  130.860000] sd 0:0:0:0: [sda] 3907029168 512-byte logical blocks: (2.00 TB/1.81 TiB)
+[  130.870000] sd 0:0:0:0: Attached scsi generic sg3 type 0
+[  130.900000] sd 0:0:0:0: [sda] Write Protect is off
+[  130.920000] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[  130.940000]  sda: sda1 sda2 sda3 &lt; sda5 &gt;
+[  130.980000] sd 0:0:0:0: [sda] Attached SCSI disk
+[  137.810000] ata2.00: skip command 0xef feature 0x2
+[  137.850000] ata1.00: configured for UDMA/133
+[  137.850000] ata1: EH complete
+</code></pre>
+<p><small>Full boot <a href="https://gist.github.com/guiambros/4187670">here</a></small></p>
+<p><strong>Bonus tip</strong>: if you&rsquo;re really eager to void your warranty, you can hack U-Boot and load another operating system instead of Linux. The NetBSD folks posted a <a href="http://www.netbsd.org/ports/sandpoint/instSynology.html">handy tutorial here</a>.</p>
+<p>All in all, the Synology Diskstation is a great NAS server, based on open standards, and very hacker friendly. Hope you never need to connect a serial console to yours, but it&rsquo;s good to know it&rsquo;s there, should you ever need it.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        
+        
+        
+        
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://wrgms.com:443/">WarGames</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

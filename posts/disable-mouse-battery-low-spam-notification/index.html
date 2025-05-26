@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Disable &#34;Mouse battery low&#34; spam notification on Ubuntu | WarGames</title>
+<meta name="keywords" content="">
+<meta name="description" content="I use a Logitech Performance MX wireless mouse, on Ubuntu 18.10 (Cosmic Cuttlefish), with Gnome 3.30.2 Ubuntu 20.04, with Gnome 3.36.2.
+This mouse uses regular 1.2V AA NiMH rechargeable battery1, which usually lasts 3 months on a single charge
+The problem is that Ubuntu&rsquo;s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 weeks before it really runs out.">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com:443/posts/disable-mouse-battery-low-spam-notification/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.82dbd1eb53a66f19cbfb2a9b41984979e0118e8b671c733ce84cbdcd685bc7aa.css" integrity="sha256-gtvR61OmbxnL&#43;yqbQZhJeeARjotnHHM86Ey9zWhbx6o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com:443/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com:443/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com:443/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com:443/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com:443/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com:443/posts/disable-mouse-battery-low-spam-notification/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+  
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com:443/" accesskey="h" title="WarGames (Alt + H)">WarGames</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Disable &#34;Mouse battery low&#34; spam notification on Ubuntu
+    </h1>
+    <div class="post-meta"><span title='2019-06-02 23:47:42 +0000 UTC' style='color: var(--post-date-color);'>June 2, 2019</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>I use a Logitech Performance MX wireless mouse, on <del>Ubuntu 18.10 (<em>Cosmic Cuttlefish</em>), with Gnome 3.30.2</del> Ubuntu 20.04, with Gnome 3.36.2.</p>
+<p>This mouse uses regular 1.2V AA NiMH rechargeable battery<sup>1</sup>, which usually lasts 3 months on a single charge</p>
+<p>The problem is that Ubuntu&rsquo;s power system tries to detect how much voltage is left, and either the voltage sensors or the calculation algorithm is completely broken, so it starts to show notifications 6-8 <em>weeks</em> before it really runs out.</p>
+<p><img loading="lazy" src="/content/images/2019/06/upowerd.png"></p>
+<p>The worse part is that these notifications won&rsquo;t fade away after a few seconds like you&rsquo;d expect. And to make it more infuriating, they have an audible alert, and show up after a every period of brief inactivity, which means you&rsquo;ll get dozens of notifications per day &ndash; and you&rsquo;ll will need to click to dismiss them every single time.</p>
+<p>I don&rsquo;t really need to be notified two months in advance on a <em>mouse battery</em> (or at all). When it runs out, I can just connect the cable. It&rsquo;s not like a printer, that you need to buy ink in advance.</p>
+<p>It seems I&rsquo;m not alone: tons of users have reported the same problem for years (<a href="https://askubuntu.com/questions/985963/disable-mouse-battery-low-spam-notification">1</a>, or <a href="https://ubuntuforums.org/showthread.php?t=2395380">2</a>, or <a href="https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1798166">3</a>), but no solution.</p>
+<p>It seems that <code>upower</code> developers recognize that the battery % should be ignored, but still emits warnings on low battery, and Gnome Settings Daemon doesn&rsquo;t offer any way to selectively disable or control these notifications:</p>
+<pre tabindex="0"><code>$ upower --dump
+Device: /org/freedesktop/UPower/devices/mouse_hidpp_battery_12
+  native-path:          hidpp_battery_12
+  model:                Performance MX
+  serial:               104a-8a-10-ee-9b
+  power supply:         no
+  updated:              Sun Jun  2 18:09:54 2019 (15 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  mouse
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    battery-level:       critical
+    percentage:          5% (should be ignored) ◀◀◀
+    icon-name:          &#39;battery-caution-symbolic&#39;
+</code></pre><p>Most of the workarounds I found involve patching gnome-settings-daemon (which I&rsquo;ve done before, but for <a href="https://wrgms.com/fixing-gnome-3-2x-hardcoded-superf1-shortcut/">different reasons</a>), or disabling power notifications entirely. I dislike both solutions, and wanted to selectively disable only mouse battery notifications, without touching anything else.</p>
+<p>Thanks to a tip by <a href="https://gitlab.gnome.org/GNOME/gnome-settings-daemon/issues/108#note_371478">@daFritz84</a>, I decided to patch <code>upowerd</code> directly (although I used a different method than Stefan). The good news is that upower has few dependencies, so it&rsquo;s pretty straightforward to compile and patch your system.</p>
+<p>Here&rsquo;s the <a href="https://gist.github.com/guiambros/f2bf07f1cc085f8f0b0a9e04c0a767b4">patch</a> to be applied over <a href="https://gitlab.freedesktop.org/upower/upower/blob/master/src/up-device.c#L61">up-device.c</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#f92672">---</span> up<span style="color:#f92672">-</span>device.c	<span style="color:#ae81ff">2019</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span><span style="color:#f92672">:</span><span style="color:#ae81ff">18</span><span style="color:#f92672">:</span><span style="color:#ae81ff">57.607554731</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0400</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+++</span> up<span style="color:#f92672">-</span>device<span style="color:#f92672">-</span>silent.c	<span style="color:#ae81ff">2019</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">00</span><span style="color:#f92672">:</span><span style="color:#ae81ff">19</span><span style="color:#f92672">:</span><span style="color:#ae81ff">03.207705276</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0400</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@@</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">63</span>,<span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">63</span>,<span style="color:#ae81ff">15</span> <span style="color:#960050;background-color:#1e0010">@@</span>
+</span></span><span style="display:flex;"><span> 	UpDeviceLevel warning_level, battery_level;
+</span></span><span style="display:flex;"><span> 	UpExportedDevice <span style="color:#f92672">*</span>skeleton <span style="color:#f92672">=</span> <span style="color:#a6e22e">UP_EXPORTED_DEVICE</span> (device);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>	<span style="color:#75715e">/* Disable warning notifications for wireless mice with rechargeable batteries */</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>	<span style="color:#66d9ef">int</span> type <span style="color:#f92672">=</span> <span style="color:#a6e22e">up_exported_device_get_type_</span> (skeleton);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>	<span style="color:#66d9ef">int</span> state <span style="color:#f92672">=</span> <span style="color:#a6e22e">up_exported_device_get_state</span>(skeleton);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>	<span style="color:#66d9ef">if</span> (type <span style="color:#f92672">==</span> UP_DEVICE_KIND_MOUSE <span style="color:#f92672">&amp;&amp;</span> state <span style="color:#f92672">==</span> UP_DEVICE_STATE_DISCHARGING) {
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>		warning_level <span style="color:#f92672">=</span> UP_DEVICE_LEVEL_NONE;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>		<span style="color:#a6e22e">up_exported_device_set_warning_level</span> (skeleton, warning_level);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>		<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>	}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">/* Not finished setting up the object? */</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">if</span> (device<span style="color:#f92672">-&gt;</span>priv<span style="color:#f92672">-&gt;</span>daemon <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span> 		<span style="color:#66d9ef">return</span>;
+</span></span></code></pre></div><p><em>(Update 2021-07: the latest upower 0.99.12 changed structured slightly, so you need to use the updated <a href="https://gist.githubusercontent.com/guiambros/f2bf07f1cc085f8f0b0a9e04c0a767b4/raw/73efac967c8fc9539802e7aa8eeba5492f8ae3b1/up-device-current-0.99.12p.patch">patch</a>)</em></p>
+<p>Here&rsquo;s the step-by-step, tested on Ubuntu 18.04, 20.04, 20.10, 21.04, and Manjaro (<em>disclaimer: provided as is; you are responsible for checking the accuracy of the patch and ensure it won&rsquo;t ruin your system. Having said that, let me know in the comments below if it doesn&rsquo;t work for you, and I&rsquo;ll try to incorporate new distributions over time</em>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>set -e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># See https://wrgms.com/disable-mouse-battery-low-spam-notification/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># for instructions on how to use it</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TL;DR: run with &#34;--keyboard&#34; if you want to patch upower to ignore both</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># mice and keyboard notifications (by default it ignores only mice)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check distro and upower version in use, and install required libraries</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>echo
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;------------------------------&#34;</span>
+</span></span><span style="display:flex;"><span>upower --version
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;------------------------------&#34;</span>
+</span></span><span style="display:flex;"><span>echo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>UPOWER_ORIG_VER<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>upower --version<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>OS<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>awk -F<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/^ID=/{print $2}&#39;</span> /etc/os-release<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>OS_VER<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>awk -F<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/^VERSION_ID=/{print $2}&#39;</span> /etc/os-release | cut -d <span style="color:#e6db74">&#34;\&#34;&#34;</span> -f 2<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>OS_VER_MAJOR<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>echo <span style="color:#e6db74">${</span>OS_VER<span style="color:#e6db74">}</span> | awk -F. <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PATCH_LEGACY_URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://gist.githubusercontent.com/guiambros/f2bf07f1cc085f8f0b0a9e04c0a767b4/raw/73efac967c8fc9539802e7aa8eeba5492f8ae3b1/up-device-legacy.patch&#34;</span>
+</span></span><span style="display:flex;"><span>PATCH_CURRENT_URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://gist.githubusercontent.com/guiambros/f2bf07f1cc085f8f0b0a9e04c0a767b4/raw/73efac967c8fc9539802e7aa8eeba5492f8ae3b1/up-device-current-0.99.12p.patch&#34;</span>
+</span></span><span style="display:flex;"><span>PATCH_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;up-device.patch&#34;</span>
+</span></span><span style="display:flex;"><span>PATCH_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PATCH_CURRENT_URL<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$OS<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;manjaro&#34;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;-- Manjaro detected; installing required libraries&#34;</span>
+</span></span><span style="display:flex;"><span>    sudo pacman -S base-devel gtk-doc gobject-introspection git
+</span></span><span style="display:flex;"><span>    PATH_UPOWERD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/lib&#34;</span>
+</span></span><span style="display:flex;"><span>    PATH_UPOWER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/bin&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$OS<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ubuntu&#34;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;-- Ubuntu detected; installing required libraries&#34;</span>
+</span></span><span style="display:flex;"><span>    sudo apt install -y git gtk-doc-tools gobject-introspection libgudev-1.0-dev libusb-1.0-0-dev autoconf libtool autopoint
+</span></span><span style="display:flex;"><span>    PATH_UPOWER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/bin&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>OS_VER<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;20.10&#34;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;--- Ubuntu version 20.10 (Groovy Gorilla) detected&#34;</span>
+</span></span><span style="display:flex;"><span>        PATH_UPOWERD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/libexec&#34;</span>
+</span></span><span style="display:flex;"><span>        UPOWER_BRANCH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UPOWER_0_99_11&#34;</span>
+</span></span><span style="display:flex;"><span>        PATCH_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PATCH_LEGACY_URL<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">${</span>OS_VER_MAJOR<span style="color:#e6db74">}</span> -ge <span style="color:#ae81ff">21</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;--- Ubuntu version 21 or above detected&#34;</span>
+</span></span><span style="display:flex;"><span>        PATH_UPOWERD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/libexec&#34;</span>
+</span></span><span style="display:flex;"><span>        UPOWER_BRANCH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UPOWER_0_99_11&#34;</span>
+</span></span><span style="display:flex;"><span>        PATCH_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PATCH_LEGACY_URL<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">${</span>OS_VER_MAJOR<span style="color:#e6db74">}</span> -le <span style="color:#ae81ff">20</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;--- Ubuntu version 20.04 or lower detected&#34;</span>
+</span></span><span style="display:flex;"><span>        PATH_UPOWERD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/lib/upower&#34;</span>
+</span></span><span style="display:flex;"><span>        UPOWER_BRANCH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UPOWER_0_99_11&#34;</span>
+</span></span><span style="display:flex;"><span>        PATCH_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PATCH_LEGACY_URL<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;-- Unknown system; this script was only tested on ubuntu and manjaro.&#34;</span>
+</span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;------------------------------&#34;</span>
+</span></span><span style="display:flex;"><span>echo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download upowerd source and selects the proper branch</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>cd ~
+</span></span><span style="display:flex;"><span>git clone https://gitlab.freedesktop.org/upower/upower
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">${</span>UPOWER_BRANCH<span style="color:#e6db74">}</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;-- Using latest master branch (0.99.12 or above)&#34;</span>
+</span></span><span style="display:flex;"><span>    cd upower/src
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;-- Using branch </span><span style="color:#e6db74">${</span>UPOWER_BRANCH<span style="color:#e6db74">}</span><span style="color:#e6db74"> (latest compatible with your distro)&#34;</span>
+</span></span><span style="display:flex;"><span>    cd upower
+</span></span><span style="display:flex;"><span>    git fetch --all --tags
+</span></span><span style="display:flex;"><span>    git checkout tags/<span style="color:#e6db74">${</span>UPOWER_BRANCH<span style="color:#e6db74">}</span> -b <span style="color:#e6db74">${</span>UPOWER_BRANCH<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>    cd src
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download and patch upowerd</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>wget <span style="color:#e6db74">${</span>PATCH_URL<span style="color:#e6db74">}</span> -O <span style="color:#e6db74">${</span>PATCH_NAME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;-keyboard&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;--keyboard&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        SILENCE_KEYBOARD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;+     if ((type == UP_DEVICE_KIND_MOUSE || type == UP_DEVICE_KIND_KEYBOARD) &amp;&amp; state == UP_DEVICE_STATE_DISCHARGING) {&#34;</span>
+</span></span><span style="display:flex;"><span>        sed -i <span style="color:#e6db74">&#34;/UP_DEVICE_KIND_MOUSE/c</span><span style="color:#e6db74">${</span>SILENCE_KEYBOARD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">${</span>PATCH_NAME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>patch -F <span style="color:#ae81ff">1</span> &lt; <span style="color:#e6db74">${</span>PATCH_NAME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compile upowerd</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>cd ..
+</span></span><span style="display:flex;"><span>./autogen.sh
+</span></span><span style="display:flex;"><span>./configure
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install upowerd</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>CUR_DATETIME<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>date +%Y-%m-%d-%H%M%S<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pushd .
+</span></span><span style="display:flex;"><span>cd src/.libs
+</span></span><span style="display:flex;"><span>strip upowerd
+</span></span><span style="display:flex;"><span>sudo chown root.root upowerd
+</span></span><span style="display:flex;"><span>sudo mv upowerd <span style="color:#e6db74">${</span>PATH_UPOWERD<span style="color:#e6db74">}</span>/upowerd-silent
+</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>PATH_UPOWERD<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>sudo mv upowerd upowerd-original-<span style="color:#e6db74">${</span>CUR_DATETIME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>sudo ln -s upowerd-silent upowerd
+</span></span><span style="display:flex;"><span>popd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install upower</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>pushd .
+</span></span><span style="display:flex;"><span>cd tools/.libs
+</span></span><span style="display:flex;"><span>strip upower
+</span></span><span style="display:flex;"><span>sudo chown root.root upower
+</span></span><span style="display:flex;"><span>sudo mv upower <span style="color:#e6db74">${</span>PATH_UPOWER<span style="color:#e6db74">}</span>/upower-silent
+</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>PATH_UPOWER<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>sudo mv upower upower-original-<span style="color:#e6db74">${</span>CUR_DATETIME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>sudo ln -s upower-silent upower
+</span></span><span style="display:flex;"><span>popd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart upowerd</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>sudo systemctl restart upower
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compare versions before/after (they will likely be different, but it depends on what your distro packages by default)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>echo
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;------------------------------&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;upower version BEFORE the update:&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>UPOWER_ORIG_VER<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;------------------------------&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;upower version AFTER the update:&#34;</span>
+</span></span><span style="display:flex;"><span>upower --version
+</span></span></code></pre></div><p>For convenience, <a href="https://gist.github.com/guiambros/166039459a8579638b57f7d135505ab1">here&rsquo;s the script</a>. You can run with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -O - https://gist.githubusercontent.com/guiambros/166039459a8579638b57f7d135505ab1/raw/733b8dd3ac3280bb76f48ba3dc04655df6d69025/silent-mouse.sh | bash
+</span></span></code></pre></div><p>UPDATE: by default this disables mouse notifications only. If you want to disable keyboard notifications as well, run the script  above passing <code>--keyboard</code> as a parameter. More specifically:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -O - https://gist.githubusercontent.com/guiambros/166039459a8579638b57f7d135505ab1/raw/733b8dd3ac3280bb76f48ba3dc04655df6d69025/silent-mouse.sh | bash -s -- --keyboard
+</span></span></code></pre></div><p>Now enjoy your low battery spam-free system :) Let me know in the comments below if it works for you.</p>
+<p><sup>1</sup><em>My old Performance MX uses a replaceable battery; the Performance MX 3 uses an internal non-replaceable battery that lasts even longer</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        
+        
+        
+        
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://wrgms.com:443/">WarGames</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.147.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>wrgms.com</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://wrgms.com/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.67171b120c51fb25f1a2b5f4a8eac05f924715aabe8693ed6ee8d17ce2425279.css" integrity="sha256-ZxcbEgxR&#43;yXxorX0qOrAX5JHFaq&#43;hpPtbujRfOJCUnk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://wrgms.com/index.xml">
+<link rel="alternate" type="application/json" href="https://wrgms.com/index.json">
+<link rel="alternate" hreflang="en" href="https://wrgms.com/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top"> 
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+
+
+<main class="main">
+
+
+
+
+  
+<div style="
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: -2rem;
+    margin-bottom: 1.5rem;
+    width: 100vw;
+    height: 420px;
+    background: url('/images/cover.jpg') center center / cover no-repeat;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  ">
+  </div>
+
+
+
+<button id="theme-toggle" class="home-theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+  <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+  <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+</button> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Reverse Engineering Synology&#39;s OpenSSH
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+Trying to use a non-standard shell in your Synology DS212&#43; NAS may be an exercise of frustration.
+I’m a bash-lover, and have a bunch of scripts to automate backups, so I wanted to set up default shell to /bin/bash.
+It worked well with root, but when a regular user tries to log in, the connection is terminated with “Permission denied, please try again.”.
+Weird. Maybe /etc/shells? Nops. Maybe sshd_config? No. PAM modules, then? Also not. I even tried compiling bash from source (which took me a full day, just to get ARM GCC to cross compile properly). Nada.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2013-01-21 01:36:00 +0000 UTC' style='color: var(--post-date-color);'>January 21, 2013</span></footer>
+  <a class="entry-link" aria-label="post link to Reverse Engineering Synology&#39;s OpenSSH" href="https://wrgms.com/reverse-engineering-synology-openssh/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lessig Blog, v2: Prosecutor as bully
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> (Some will say this is not the time. I disagree. This is the time when every mixed emotion needs to find voice.)
+Since his arrest in January, 2011, I have known more about the events that began this spiral than I have wanted to know. Aaron consulted me as a friend and lawyer. He…
+Continue reading: Lessig Blog, v2: Prosecutor as Bully
+Photo credit: Boston Wiki Meetup, by ragesoss on Flickr
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2013-01-13 00:20:00 +0000 UTC' style='color: var(--post-date-color);'>January 13, 2013</span></footer>
+  <a class="entry-link" aria-label="post link to Lessig Blog, v2: Prosecutor as bully" href="https://wrgms.com/lessig-blog-v2-prosecutor-as-bully/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Synology&#39;s &#34;secret&#34; telnet password
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>If you have a Synology NAS and had some sort of disk crash in the past, you’ve probably encountered the famous “Cannot format system partition” and “Please configure your router to forward port 23 to DiskStation and contact Synology online support”.
+Yeah, it sucks.
+It sucks even more when you know the disk is perfectly fine, and you still have hopes to recover your data. Or you simply don’t like the idea of having your port 23 open to the world for god-knows-how-long until a Synology tech support can look into your case.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-12-08 21:28:00 +0000 UTC' style='color: var(--post-date-color);'>December 8, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to Synology&#39;s &#34;secret&#34; telnet password" href="https://wrgms.com/synologys-secret-telnet-password/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Recovering a Failed Synology Diskstation with a Serial Console
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+I thought I’d post this here for anyone looking for help on troubleshooting a failed Synology Diskstation NAS.
+I’ve been a happy user of a Synology DS-212&#43;. The software is robust and much better than my old DroboFS, and the fact that it is entirely open source is a big plus.
+I recently upgraded the firmware to DSM 2661. Everything worked fine. For 12 hours. The next morning, the device was dead, with the blue blink of death).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-12-02 06:57:00 +0000 UTC' style='color: var(--post-date-color);'>December 2, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to Recovering a Failed Synology Diskstation with a Serial Console" href="https://wrgms.com/recovering-a-failed-synology-diskstation-ds2xx-serial/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Glitch is closing. Here&#39;s why.
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Glitch, the beautiful massive multiplayer game with a pixel-perfect design, announced that they’ll be closing doors soon. It’s sad to see so much work and love going nowhere. At least they were classy and wrote a candid and honest shutting-down post, and they’re even refunding users (!). That’s a level of integrity that you don’t see everyday in the startup world.
+If you’ve never played Glitch, it’s now too late. The game world is now restricted to existing users, and everything will shut down on December 9th 2012. Here’s some videos to give you an idea of what you missed.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-11-16 06:13:00 +0000 UTC' style='color: var(--post-date-color);'>November 16, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to Glitch is closing. Here&#39;s why." href="https://wrgms.com/glitch/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">FileZilla configuration across multiple computers
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>FileZilla is great, but the default configuration is to save all configuration files &amp; sites to local folders.
+Here’s an elegant solution to change the default directory. Just copy fzdefaults.xml.example from [FileZilla&#39;s install dir]/docs and place it in:
+Linux/BSD: ~/.filezilla Mac OSX: Contents/SharedSupport/ Windows: put in same directory as filezilla.exe Alternatively you can also point to a shared folder on Dropbox, and share your config and sites across multiple computers. Just make sure you have a strong password on Dropbox, for obvious reasons.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-11-12 04:37:00 +0000 UTC' style='color: var(--post-date-color);'>November 12, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to FileZilla configuration across multiple computers" href="https://wrgms.com/sharing-filezilla-configuration-across-multiple/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Machine Learning @ Coursera
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I just finished Coursera’s Machine Learning class. I did OK the first time, but wasn’t sure about some concepts, so decided to do it again. It was much easier the second time.
+If you’re interested in machine learning and collective intelligence, this is a great course. I can’t post the code, but would be glad to help if you have any questions. Prof. Andrew Ng did an awesome job, and it’s great to see his success with Coursera.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-11-05 05:39:00 +0000 UTC' style='color: var(--post-date-color);'>November 5, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to Machine Learning @ Coursera" href="https://wrgms.com/just-finished-courseras-machine-learning-class/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Syncing Sublime Text 2 Settings via Dropbox
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I migrated to Sublime Text 2 a while ago, and not looking back. It’s by far the best editor I’ve ever used. Its packaging system is simple and efficient. But one thing that annoys me is the lack of synchronization across different computers.
+Not anymore.
+The solution is rather simple. You can just move three directories – Packages, Installed Packages, Pristine Packages – to your Dropbox, create a symbolic link for each directory (ln on Linux/OSX, mklink /d on Windows), and your packages will always be perfectly in sync across multiple computers - even using different platforms.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-10-28 01:15:00 +0000 UTC' style='color: var(--post-date-color);'>October 28, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to Syncing Sublime Text 2 Settings via Dropbox" href="https://wrgms.com/syncing-sublime-text-2-settings-via-dropbox/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fix ALL CAPS MENUS on Visual Studio 2012
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>So you just installed Visual Studio 2012 and the first thing you notice is that Microsoft now has ALL CAPS MENUS everywhere!
+Well, not sure about you, but I want my ProperCase menus back. Luckily there’s an easy solution (for now):
+Hit Win &#43; R and enter:
+If you’re running Visual Studio Express 2012 for Windows Desktop: REG ADD HKEY_CURRENT_USER\Software\Microsoft\WDExpress\11.0\General /v SuppressUppercaseConversion /d 1 /t REG_DWORD If you’re running Visual Studio 2012: REG ADD HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\11.0\General /v SuppressUppercaseConversion /d 1 /t REG_DWORD If you’re running Visual Studio Express 2012 for Web: REG ADD HKEY_CURRENT_USER\Software\Microsoft\VWDExpress\11.0\General /v SuppressUppercaseConversion /d 1 /t REG_DWORD Voilà! Of course you can also use RegEdit.exe, if you prefer to adjust manually. Just navigate to the registry key above and add a DWORD for SupressUppercaseConversion, with value 1.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-10-20 04:23:00 +0000 UTC' style='color: var(--post-date-color);'>October 20, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to Fix ALL CAPS MENUS on Visual Studio 2012" href="https://wrgms.com/tired-of-all-caps-menus-on-visual-studio-2012/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">EW-7811Un wireless adapter on Raspberry Pi
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>After upgrading my Raspberry Pi Wheezy to the latest kernel 3.2.27&#43;, my wireless adapter EW-7811Un stopped working.
+Here’s the fix:
+su - root mkdir ~/drivers cd ~/drivers wget http://dl.dropbox.com/u/80256631/8192cu-latest.tar.gz tar zxvf 8192cu-latest.tar.gz cd 8192cu-latest install -p -m 644 8192cu.ko /lib/modules/3.2.27&#43;/kernel/drivers/net/wireless depmod -a cat &lt;&lt;EOF &gt;&gt; /etc/modprobe.d/blacklist.conf blacklist rtl8192cu EOF cat &lt;&lt;EOF &gt;&gt; /etc/modules 8192cu EOF shutdown -r now After reboot you should have wlan0. You may need to configure your wireless network if you didn’t so already, by editing /etc/network/interface. Recommended that you use wpa_passphrase to generate your encrypted wifi password:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2012-09-16 19:24:00 +0000 UTC' style='color: var(--post-date-color);'>September 16, 2012</span></footer>
+  <a class="entry-link" aria-label="post link to EW-7811Un wireless adapter on Raspberry Pi" href="https://wrgms.com/ew-7811un-wireless-adapter-on-raspberry-pi/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://wrgms.com/page/2/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://wrgms.com/page/4/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>© 2025 <a href='/about'>Gui Ambros</a></span> · 
+        Built with 🖤 using <a href='https://gohugo.io/' rel='noopener noreferrer' target='_blank'>Hugo</a> + <a href='https://github.com/adityatelange/hugo-PaperMod/' rel='noopener' target='_blank'>PaperMod</a> · 
+
+    
+            <a href='/index.xml'>rss</a>
+
+    
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

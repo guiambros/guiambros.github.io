@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut | WarGames</title>
+<meta name="keywords" content="">
+<meta name="description" content="Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.
+I&rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (keyboard, extensions, application menu, etc), but I&rsquo;m quite happy with everything. Or almost everything.
+One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have a shortcut for pretty much everything - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.">
+<meta name="author" content="Gui Ambros">
+<link rel="canonical" href="https://wrgms.com:443/posts/fixing-gnome-3-2x-hardcoded-superf1-shortcut/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.82dbd1eb53a66f19cbfb2a9b41984979e0118e8b671c733ce84cbdcd685bc7aa.css" integrity="sha256-gtvR61OmbxnL&#43;yqbQZhJeeARjotnHHM86Ey9zWhbx6o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://wrgms.com:443/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://wrgms.com:443/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://wrgms.com:443/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://wrgms.com:443/apple-touch-icon.png">
+<link rel="mask-icon" href="https://wrgms.com:443/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://wrgms.com:443/posts/fixing-gnome-3-2x-hardcoded-superf1-shortcut/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+  
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://wrgms.com:443/" accesskey="h" title="WarGames (Alt + H)">WarGames</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+
+
+
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Fixing Gnome 3.2x hardcoded &lt;Super&gt;&#43;&lt;F1&gt; shortcut
+    </h1>
+    <div class="post-meta"><span title='2018-06-03 13:06:51 +0000 UTC' style='color: var(--post-date-color);'>June 3, 2018</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Ubuntu 18.04 LTS is finally out, and with it you now have Gnome out of the box.</p>
+<p>I&rsquo;ve been using Gnome for several years, and have enjoyed its minimalism. It took me some time to make it work like I wanted (<a href="https://wrgms.com/using-xcompose-with-chrome-and-sublime-text/">keyboard</a>, extensions, application menu, etc), but I&rsquo;m quite happy with everything. Or almost everything.</p>
+<p>One thing I enjoyed over the years was the ability to customize my keyboard shortcuts. I have a shortcut for pretty much everything - to center windows on my screen, to open programs, start and stop Spotify, to run macros, to log in to my remote servers, and so on.</p>
+<p>One of my handy shortcuts is <code>&lt;Super&gt;+&lt;F1&gt;</code> to open an xterm with superuser, and <code>&lt;Super&gt;+&lt;F2&gt;</code> for regular user. I use custom xterm profiles, so I can easily check if I&rsquo;m running under a privileged context by looking at the color of the window.</p>
+<p>This worked well for years under Ubuntu 14.04 and Gnome 3.20, but stopped working with the upgrade to Bionic Beaver. More specifically, <code>&lt;Super&gt;+&lt;F1&gt;</code> started opening System Help, and there was no way to change it.</p>
+<p>&ldquo;<em>No problem</em>&rdquo;, I thought; this can be easily adjusted in System Settings.</p>
+<p>Nops.</p>
+<p>I searched around, and found other folks <a href="https://stackoverflow.com/questions/49685845/ubuntu-17-10-gnome-keyboard-shortcut-super-f1-can-not-be-reset-to-other-gui-acti">with the same problem</a>, but no solution.</p>
+<p>I then decided to dug into the source code, and discovered the improbable: it seems that Gnome devs decided the help was SO important that it deserved its own unique, <em>hardcoded</em>, and <em>immutable</em> shortcut. If you want to reassign it, you&rsquo;re out of luck.</p>
+<p>According to gnome-settings-daemon <a href="https://gitlab.gnome.org/GNOME/gnome-settings-daemon/blob/master/NEWS">changelog</a>:</p>
+<pre><code>===============
+Version 3.21.90
+===============
+...
+ Media keys:
+    - Add Super+F1 as a hardcoded shortcut for launching Help
+...
+</code></pre>
+<p>REALLY?  What&rsquo;s wrong with a default icon in the toolbar, or maybe a popup window when you boot for the first time?  Also, does anyone really care about reading the basic documentation for a windows manager?</p>
+<p>I wasn&rsquo;t convinced yet, but a closer look at the <a href="https://gitlab.gnome.org/GNOME/gnome-settings-daemon/blob/master/plugins/media-keys/shortcuts-list.h">source code</a> confirmed my fears: there it was: (file /gnome-settings-daemon/blob/master/plugins/media-keys/shortcuts-list.h):</p>
+<pre><code>...
+  { HELP_KEY, NULL, N_(&quot;Help&quot;), &quot;&lt;Super&gt;F1&quot;, GSD_ACTION_MODE_LAUNCHER },
+...
+</code></pre>
+<p>So if you&rsquo;re really determined to regain control of your <code>&lt;Super&gt;+&lt;F1&gt;</code>, there&rsquo;s only one solution: to recompile gnome-settings-daemon, and replace the gsd-media-keys plugin. Spoiler alert: I&rsquo;m glad to report that my patch was successful, but beware: getting the right dependencies and recompiling Gnome is not an easy feat. Keep reading if you&rsquo;re interested in doing the same:</p>
+<ol>
+<li>
+<p>Download and install <a href="https://wiki.gnome.org/Apps/Builder">Gnome Builder</a></p>
+</li>
+<li>
+<p>Click on &ldquo;Clone&rdquo;, select a local directory (e.g., ~/Projects/) and use the official repo at <code>https://gitlab.gnome.org/GNOME/gnome-settings-daemon</code></p>
+</li>
+<li>
+<p>Open xterm, and enter <code>cd ~/Projects/gnome-settings-daemon; git checkout tags/GNOME_SETTINGS_DAEMON_3_28_1</code> (you can check your exact version with <code>gnome-shell --version</code>. Check all tags available with <code>git tag -l</code>)</p>
+</li>
+<li>
+<p>Install all dependencies. These were the ones missing in my system, but YMMV:</p>
+<pre><code> apt install libcolord-dev \
+             libgeocode-glib-dev \
+             gnome-desktop3-data \
+             libgnome-desktop-3-dev \
+             libgweather-3-dev \
+             libcanberra-gtk3-dev \
+             libgeoclue-2-dev \
+             libnotify-dev \
+             libpulse-mainloop-glib0 \
+             libpulse-dev \
+             gobject-introspection \
+             libupower-glib-dev \
+             libpolkit-gobject-1-dev \
+             libasound2-dev \
+             libgudev-1.0-dev \
+             libwacom-dev \
+             libnss3-dev \
+             libcups2-dev \
+             libnm-dev
+</code></pre>
+</li>
+<li>
+<p>Patch the source code by editing <code>~/Projects/gnome-settings-daemon/plugins/media-keys/shortcuts-list.h</code>, and add a comment in front of the offender, like below (for Gnome 3.28.1 it is in line 69):</p>
+<pre><code> // disabled! // { HELP_KEY, NULL, N_(&quot;Help&quot;), &quot;&lt;Super&gt;F1&quot;, GSD_ACTION_MODE_LAUNCHER },
+</code></pre>
+</li>
+<li>
+<p>Click [<em>Rebuild</em>] button in the Builder UI to compile (note: you need to click <em>Rebuild</em>, and not <del><em>Build</em></del>). You may want to turn off the deprecation warnings by editing <code>meson.build</code> and adding <code>'-Wno-deprecated-declarations'</code> to <code>test_cflags = [...];</code> (line 70). If you installed all the dependencies correctly, you should have no warnings nor errors.</p>
+</li>
+<li>
+<p>Find the compiled binaries. You&rsquo;re looking specifically for the plugin <code>gsd-media-keys</code>, so it&rsquo;ll likely be in the directory ~/.var/app/org.gnome.Builder/cache/gnome-builder/projects/gnome-settings-daemon/builds/default-host-HEAD/plugins/media-keys</p>
+<pre><code> cd ~/.var/app/org.gnome.Builder/cache/gnome-builder/projects/gnome-settings-daemon/builds/default-host-HEAD/plugins/media-keys ~
+
+ cp ./gsd-media-keys ~/gsd-media-keys.patched
+</code></pre>
+</li>
+<li>
+<p>Before proceeding, you may want to inspect your binary to confirm it successfully linked with shared libraries by using <code>ldd ~/gsd-media-keys.patched</code>. In my case I had problems finding <code>libgsd.so</code>, so I solved it by adding the path to ldconfig (although the correct solution would be to fix this in the build system):</p>
+<pre><code> sudo sh -c 'echo &quot;# gnome-settings-daemon\n/usr/lib/x86_64-linux-gnu/gnome-settings-daemon-3.0/\n&quot; &gt; /etc/ld.so.conf.d/gnome-settings-daemon.conf'
+ sudo ldconfig
+</code></pre>
+</li>
+<li>
+<p>You&rsquo;re now ready to install the patched <code>gsd-media-keys</code> binary in your system:</p>
+<pre><code> cd /usr/lib/gnome-settings-daemon/
+ sudo mv ~/gsd-media-keys.patched .
+ sudo strip -s ./gsd-media-keys.patched
+ sudo mv gsd-media-keys gsd-media-keys.orig
+ sudo ln -s gsd-media-keys.patched gsd-media-keys
+</code></pre>
+</li>
+<li>
+<p>Log out or reboot, and you&rsquo;re done!</p>
+</li>
+</ol>
+<p>If all goes well, your system now should be running the gsd-media-keys plugin without the <code>&lt;Super&gt;+&lt;F1&gt;</code> hardcoded, so you can reassign to anything you like.</p>
+<p>If anything goes wrong and you can&rsquo;t log in, don&rsquo;t despair. Simply open a console terminal by using <code>&lt;Ctrl&gt;+&lt;Alt&gt;+&lt;F2&gt;</code> and restore your original gsd-media-keys binary by doing:</p>
+<pre><code>cd /usr/lib/gnome-settings-daemon/
+sudo rm gsd-media-keys
+sudo ln -s gsd-media-keys.orig gsd-media-keys
+</code></pre>
+<p>Use <code>&lt;Ctrl&gt;+&lt;Alt&gt;&lt;F1&gt;</code> to go back to Gnome and log in again. You can then inspect <code>/var/log/syslog</code> to understand what went wrong (search for  &ldquo;media-keys&rdquo;). It&rsquo;s likely that you had problems with the dynamic libraries in step 8 above.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        
+        
+        
+        
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wrgms" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://wrgms.com:443/">WarGames</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
